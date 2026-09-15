@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d1117">
+<title>흰디·브레드 촬영 샷리스트</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg:#0d1117;--panel:#161b22;--panel2:#1c2330;--line:#2a3340;--tx:#e6edf3;--tx2:#9fb0c3;
+--tx3:#6b7d91;--acc:#4c9aff;--ok:#3fb950;--warn:#e3b341;--red:#f85149;--photo:#a371f7;--ext:#f0883e}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--tx);
+font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+font-size:15px;line-height:1.45;-webkit-text-size-adjust:100%}
+body{padding-bottom:86px}
+h1,h3{margin:0}
+header{position:sticky;top:0;z-index:50;background:rgba(13,17,23,.97);border-bottom:1px solid var(--line);
+padding:10px 12px 0;padding-top:max(10px,env(safe-area-inset-top))}
+.h-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.h-top h1{font-size:15px;font-weight:700;letter-spacing:-.2px}
+.sync{margin-left:auto;font-size:11px;padding:4px 8px;border-radius:999px;border:1px solid var(--line);
+background:var(--panel);color:var(--tx3);white-space:nowrap;cursor:pointer}
+.sync.on{color:var(--ok);border-color:rgba(63,185,80,.4);background:rgba(63,185,80,.1)}
+.sync.off{color:var(--warn);border-color:rgba(227,179,65,.4);background:rgba(227,179,65,.1)}
+.tabs{display:flex;gap:6px;margin-bottom:8px}
+.tab{flex:1;padding:8px 4px;border-radius:8px 8px 0 0;background:var(--panel);border:1px solid var(--line);
+border-bottom:none;color:var(--tx2);font-size:13px;font-weight:600;text-align:center;cursor:pointer}
+.tab.on{background:var(--panel2);color:var(--tx);box-shadow:inset 0 2px 0 var(--acc)}
+.tab small{display:block;font-size:10px;font-weight:500;color:var(--tx3);margin-top:1px}
+.tab.on small{color:var(--acc)}
+.stats{display:flex;gap:6px;padding-bottom:9px}
+.stat{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 8px;min-width:0}
+.stat .lb{font-size:10px;color:var(--tx3);white-space:nowrap}
+.stat .vl{font-size:17px;font-weight:700;letter-spacing:-.5px}
+.stat.crit .vl{color:var(--red)}
+.stat.done .vl{color:var(--ok)}
+.bar{height:4px;background:var(--line);border-radius:3px;overflow:hidden;margin-top:4px}
+.bar i{display:block;height:100%;background:var(--ok)}
+.stat.crit .bar i{background:var(--red)}
+.filters{display:flex;gap:6px;overflow-x:auto;padding:10px 12px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;padding:6px 11px;border-radius:999px;background:var(--panel);border:1px solid var(--line);
+color:var(--tx2);font-size:12.5px;font-weight:600;cursor:pointer;white-space:nowrap}
+.chip.on{background:var(--acc);border-color:var(--acc);color:#04121f}
+.chip.on.rr{background:var(--red);border-color:var(--red);color:#fff}
+.now-bar{margin:0 12px 10px;padding:8px 10px;border-radius:8px;background:rgba(76,154,255,.1);
+border:1px solid rgba(76,154,255,.35);font-size:12.5px;color:var(--acc);display:flex;gap:6px;align-items:center}
+.now-bar b{color:var(--tx)}
+.now-bar button{margin-left:auto;background:var(--acc);color:#04121f;border:0;border-radius:6px;
+padding:4px 9px;font-size:11.5px;font-weight:700;cursor:pointer}
+.todo{margin:0 12px 10px;border:1px solid rgba(248,81,73,.35);background:rgba(248,81,73,.07);border-radius:10px;overflow:hidden}
+.todo h3{padding:9px 11px;font-size:12.5px;color:var(--red);display:flex;cursor:pointer;align-items:center;gap:6px}
+.todo h3 .cnt{margin-left:auto;font-weight:800}
+.todo ul{margin:0;padding:0 11px 10px;list-style:none;max-height:210px;overflow:auto}
+.todo li{font-size:12.5px;color:var(--tx2);padding:4px 0;border-top:1px solid rgba(248,81,73,.15);cursor:pointer}
+.todo li b{color:var(--tx);font-weight:600}
+.todo li .t{color:var(--tx3);font-size:11px}
+.todo.fold ul{display:none}
+.blk{margin:0 12px 10px}
+.blk-h{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--panel2);
+border:1px solid var(--line);border-radius:9px 9px 0 0}
+.blk-h .t{font-size:11px;color:var(--tx3);flex:0 0 auto}
+.blk-h .n{font-size:13px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.blk-h .p{margin-left:auto;font-size:11.5px;color:var(--tx2);flex:0 0 auto}
+.blk-h.ext{background:rgba(240,136,62,.14);border-color:rgba(240,136,62,.4)}
+.blk-h.ext .n{color:var(--ext)}
+.blk-h.cur{box-shadow:0 0 0 2px var(--acc)}
+.blk-b{border:1px solid var(--line);border-top:none;border-radius:0 0 9px 9px;overflow:hidden}
+.shot{border-top:1px solid var(--line);padding:10px;background:var(--panel)}
+.shot:first-child{border-top:none}
+.shot.done{background:rgba(63,185,80,.06)}
+.s-top{display:flex;gap:8px;align-items:flex-start}
+.s-main{flex:1;min-width:0}
+.s-name{font-size:14.5px;font-weight:650;line-height:1.3}
+.shot.done .s-name{color:var(--tx2);text-decoration:line-through}
+.s-meta{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.tg{font-size:10.5px;padding:2px 6px;border-radius:5px;background:var(--panel2);color:var(--tx2);border:1px solid var(--line)}
+.tg.pri{color:var(--red);border-color:rgba(248,81,73,.4);background:rgba(248,81,73,.1);font-weight:700}
+.tg.ph{color:var(--photo);border-color:rgba(163,113,247,.4);background:rgba(163,113,247,.1)}
+.tg.mv{color:var(--acc);border-color:rgba(76,154,255,.35);background:rgba(76,154,255,.1)}
+.s-frame{margin-top:7px;font-size:12.5px;color:var(--tx2)}
+.s-note{margin-top:6px;font-size:12px;color:var(--warn);background:rgba(227,179,65,.08);
+border-left:2px solid var(--warn);padding:5px 8px;border-radius:0 5px 5px 0}
+.acts{display:flex;gap:6px;margin-top:9px}
+.act{flex:1;padding:10px 6px;border-radius:8px;border:1.5px solid var(--line);background:var(--panel2);
+color:var(--tx2);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;
+justify-content:center;gap:5px;user-select:none;-webkit-user-select:none}
+.act .bx{width:15px;height:15px;border-radius:4px;border:1.5px solid var(--tx3);flex:0 0 auto;position:relative}
+.act.on{background:rgba(63,185,80,.14);border-color:var(--ok);color:var(--ok)}
+.act.on .bx{background:var(--ok);border-color:var(--ok)}
+.act.on .bx:after{content:"";position:absolute;left:4px;top:1px;width:4px;height:8px;
+border:solid #04121f;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.act .who{font-size:10px;font-weight:600;opacity:.75}
+.no{font-size:10.5px;color:var(--tx3);padding-top:3px;flex:0 0 auto;min-width:20px}
+.ck-sec{margin:0 12px 10px}
+.ck-h{padding:8px 10px;background:var(--panel2);border:1px solid var(--line);border-radius:9px 9px 0 0;font-size:13px;font-weight:700;display:flex}
+.ck-h .p{margin-left:auto;font-size:11.5px;color:var(--tx2);font-weight:600}
+.ck-b{border:1px solid var(--line);border-top:none;border-radius:0 0 9px 9px}
+.ck-row{display:flex;align-items:center;gap:8px;padding:9px 10px;border-top:1px solid var(--line);background:var(--panel)}
+.ck-row:first-child{border-top:none}
+.ck-row .lb{flex:1;font-size:13px;min-width:0}
+.ck-row .bt{display:flex;gap:4px;flex:0 0 auto}
+.mini{width:42px;padding:7px 0;text-align:center;border-radius:6px;border:1.5px solid var(--line);
+background:var(--panel2);color:var(--tx3);font-size:10.5px;font-weight:700;cursor:pointer}
+.mini.on{background:rgba(63,185,80,.16);border-color:var(--ok);color:var(--ok)}
+.ck-legend{display:flex;gap:4px;justify-content:flex-end;padding:6px 10px 0;font-size:10px;color:var(--tx3)}
+.ck-legend span{width:42px;text-align:center}
+footer{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(13,17,23,.97);
+border-top:1px solid var(--line);padding:8px 12px;padding-bottom:max(8px,env(safe-area-inset-bottom));
+display:flex;gap:6px;align-items:center}
+footer .who{font-size:11px;color:var(--tx3);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+footer button{background:var(--panel2);border:1px solid var(--line);color:var(--tx2);border-radius:7px;
+padding:8px 11px;font-size:12px;font-weight:600;cursor:pointer;flex:0 0 auto}
+footer button.pri{background:var(--acc);border-color:var(--acc);color:#04121f}
+.empty{padding:26px 12px;text-align:center;color:var(--tx3);font-size:13px}
+.modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;padding:18px}
+.modal.on{display:flex}
+.mbox{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;max-width:400px;width:100%}
+.mbox h3{font-size:15px;margin-bottom:10px}
+.mbox p{font-size:12.5px;color:var(--tx2);margin:0 0 12px}
+.mbox input{width:100%;padding:10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);
+color:var(--tx);font-size:14px;margin-bottom:8px;font-family:inherit}
+.mbox .row{display:flex;gap:6px;margin-top:6px}
+.mbox button{flex:1;padding:10px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+color:var(--tx);font-size:13px;font-weight:700;cursor:pointer}
+.mbox button.pri{background:var(--acc);border-color:var(--acc);color:#04121f}
+.mbox .hint{font-size:11px;color:var(--tx3);margin-top:10px;line-height:1.5}
+</style>
+</head>
+<body>
+<header>
+ <div class="h-top"><h1>촬영 샷리스트</h1><div class="sync" id="syncPill">연결 중…</div></div>
+ <div class="tabs">
+  <div class="tab on" data-tab="day1">DAY1 흰디<small>9/16 (수)</small></div>
+  <div class="tab" data-tab="day2">DAY2 브레드<small>9/17 (목)</small></div>
+  <div class="tab" data-tab="chk">체크리스트<small>A~F 공통</small></div>
+ </div>
+ <div class="stats" id="stats"></div>
+</header>
+<div class="filters" id="filters">
+ <div class="chip on" data-f="all">전체</div>
+ <div class="chip rr" data-f="todo">남은 컷</div>
+ <div class="chip" data-f="done">찍은 컷</div>
+ <div class="chip" data-f="pri">★★★ 필수</div>
+ <div class="chip" data-f="photo">사진 포함</div>
+ <div class="chip" data-f="ext">외부 전광판</div>
+ <div class="chip" data-f="move">짐벌/무빙</div>
+</div>
+<div id="todo"></div>
+<div id="nowbar"></div>
+<div id="main"></div>
+<footer>
+ <div class="who" id="whoLabel"></div>
+ <button id="btnCopy">현황 복사</button>
+ <button id="btnRoom">공유</button>
+ <button class="pri" id="btnNow">지금 시간</button>
+</footer>
+
+<div class="modal" id="modal"><div class="mbox" id="mbox"></div></div>
+
+<script>
+(function(){
+var DATA = {"day1":[{"id":"d1-1","no":1,"time":"15:30~15:45","block":"외부 전광판 (오후)","name":"외부 전광판 정면 와이드 — 오후","fmt":"영상+사진","frame":"건물 외벽 전광판 정면, 수평 맞춤, 하늘 포함","gear":"A7V 삼각대","mv":"고정","len":"20s / 10컷","pri":"★★★","chk":"E","note":"오후 자연광 버전. 도착 직후 세팅 전에 먼저 확보","tasks":["영상","사진"]},{"id":"d1-2","no":2,"time":"15:30~15:45","block":"외부 전광판 (오후)","name":"외부 전광판 콘텐츠 풀루프 — 오후","fmt":"영상","frame":"화면 꽉 채운 미디엄, 시작~끝 통으로","gear":"A7V 삼각대","mv":"고정","len":"콘텐츠 1루프","pri":"★★★","chk":"E","note":"셔터 1/50·1/60 플리커 확인 후","tasks":["영상"]},{"id":"d1-3","no":3,"time":"15:30~15:45","block":"외부 전광판 (오후)","name":"건물 + 전광판 컨텍스트","fmt":"영상+사진","frame":"길 건너 로우앵글, 건물 규모+행인 흐름","gear":"A7V 핸드헬드","mv":"고정","len":"15s / 5컷","pri":"★★","chk":"E","note":"가로/세로 둘 다","tasks":["영상","사진"]},{"id":"d1-4","no":4,"time":"15:45~16:10","block":"현장 세팅","name":"테스트 컷 — LED 노출/플리커","fmt":"테스트","frame":"전광판 정면 미디엄, 셔터 1/50·1/60·1/100 비교","gear":"A7V 삼각대","mv":"고정","len":"10s×3","pri":"★★★","chk":"B","note":"영상 셔터값 확정 후 하루 종일 유지 / WB 고정","tasks":["확인"]},{"id":"d1-5","no":5,"time":"15:45~16:10","block":"현장 세팅","name":"사진 노출 기준 세팅","fmt":"테스트","frame":"LED 화면 스캔라인 없는 셔터 확인","gear":"A7V","mv":"고정","len":"3컷","pri":"★★★","chk":"E","note":"사진도 1/60~1/125 이내 유지 / RAW+JPEG","tasks":["확인"]},{"id":"d1-6","no":6,"time":"16:10~16:40","block":"공간 HERO","name":"팝업 전체 정면 HERO","fmt":"영상+사진","frame":"정면 와이드, 수평, 전광판+바닥+굿즈존 한 프레임","gear":"A7V 삼각대","mv":"고정","len":"20s / 5컷","pri":"★★★","chk":"A","note":"사람 없는 상태 필수 / 같은 삼각대 위치에서 영상→사진 연속","tasks":["영상","사진"]},{"id":"d1-7","no":7,"time":"16:10~16:40","block":"공간 HERO","name":"입구에서 보이는 전체 공간","fmt":"영상+사진","frame":"입구 시점 와이드, 눈높이","gear":"A7V 삼각대","mv":"고정","len":"15s / 3컷","pri":"★★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d1-8","no":8,"time":"16:10~16:40","block":"공간 HERO","name":"좌 / 중앙 / 우 공간","fmt":"영상+사진","frame":"각 벽면·LED 포함 와이드 3컷","gear":"A7V 삼각대","mv":"고정","len":"10s×3 / 9컷","pri":"★★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d1-9","no":9,"time":"16:10~16:40","block":"공간 HERO","name":"XR존 전체 + 바닥","fmt":"영상+사진","frame":"약간 하이앵글, 바닥 LED까지 포함","gear":"A7V 삼각대","mv":"고정","len":"15s / 3컷","pri":"★★★","chk":"A","note":"바닥 LED 노출 별도 확인","tasks":["영상","사진"]},{"id":"d1-10","no":10,"time":"16:10~16:40","block":"공간 HERO","name":"굿즈존 / 포토존 전체","fmt":"영상+사진","frame":"각 정면 와이드","gear":"A7V 삼각대","mv":"고정","len":"10s×2 / 6컷","pri":"★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d1-11","no":11,"time":"16:10~16:40","block":"공간 HERO","name":"세로 HERO 스틸 (SNS용)","fmt":"사진","frame":"9:16·4:5 세로 구도, 공간 전체","gear":"A7V 삼각대","mv":"—","len":"8컷","pri":"★★★","chk":"E","note":"가로 컷 크롭 말고 세로로 새로 구성","tasks":["사진"]},{"id":"d1-12","no":12,"time":"16:10~16:40","block":"공간 HERO","name":"공간 연결 무빙 (여유 시)","fmt":"영상","frame":"입구→XR존 Push-in, 천천히","gear":"A7V + RS4","mv":"무빙","len":"20s","pri":"★★","chk":"D","note":"HERO 고정컷 다 확보한 뒤에만","tasks":["영상"]},{"id":"d1-13","no":13,"time":"16:40~17:20","block":"전광판/콘텐츠","name":"전체 LED 풀 콘텐츠 1회 완주","fmt":"영상","frame":"벽+바닥 전체 와이드, 시작~끝 통으로","gear":"A7V 삼각대","mv":"고정","len":"콘텐츠 1루프","pri":"★★★","chk":"B","note":"최우선. 중간에 끊지 않음 / ND로 노출","tasks":["영상"]},{"id":"d1-14","no":14,"time":"16:40~17:20","block":"전광판/콘텐츠","name":"Front 화면 단독","fmt":"영상+사진","frame":"정면 화면 꽉 채운 미디엄","gear":"A7V 삼각대","mv":"고정","len":"1루프 / 3컷","pri":"★★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d1-15","no":15,"time":"16:40~17:20","block":"전광판/콘텐츠","name":"Left 화면 단독","fmt":"영상+사진","frame":"좌측 화면 꽉 채움","gear":"A7V 삼각대","mv":"고정","len":"1루프 / 3컷","pri":"★★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d1-16","no":16,"time":"16:40~17:20","block":"전광판/콘텐츠","name":"Right 화면 단독","fmt":"영상+사진","frame":"우측 화면 꽉 채움","gear":"A7V 삼각대","mv":"고정","len":"1루프 / 3컷","pri":"★★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d1-17","no":17,"time":"16:40~17:20","block":"전광판/콘텐츠","name":"Floor 화면 단독","fmt":"영상+사진","frame":"바닥 LED 하이앵글","gear":"A7V 삼각대","mv":"고정","len":"1루프 / 3컷","pri":"★★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d1-18","no":18,"time":"16:40~17:20","block":"전광판/콘텐츠","name":"벽+바닥 동시 와이드","fmt":"영상+사진","frame":"3면 벽+바닥 동시 (초광각)","gear":"A7V 삼각대","mv":"고정","len":"30s / 5컷","pri":"★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d1-19","no":19,"time":"16:40~17:20","block":"전광판/콘텐츠","name":"콘텐츠 주요 장면 스틸","fmt":"사진","frame":"콘텐츠 하이라이트 3~4장면 정지컷","gear":"A7V 삼각대","mv":"—","len":"10컷","pri":"★★★","chk":"E","note":"루프 돌 때 장면별로 끊어서","tasks":["사진"]},{"id":"d1-20","no":20,"time":"16:40~17:20","block":"전광판/콘텐츠","name":"콘텐츠 전환 장면 / LCD·광고","fmt":"영상+사진","frame":"전환 타이밍 미디엄 + LCD 광고 클로즈업","gear":"A7V 삼각대","mv":"고정","len":"15s / 4컷","pri":"★★","chk":"B","note":"전환 포인트 미리 파악","tasks":["영상","사진"]},{"id":"d1-21","no":21,"time":"17:20~18:15","block":"체험 메인","name":"2인 입장 / 시작","fmt":"영상","frame":"입구→XR존 진입, 뒤에서 팔로우","gear":"A7V + RS4","mv":"무빙","len":"15s","pri":"★★★","chk":"C","note":"체험자 2인 사전 섭외","tasks":["영상"]},{"id":"d1-22","no":22,"time":"17:20~18:15","block":"체험 메인","name":"2인 플레이 와이드 (대표 체험컷)","fmt":"영상+사진","frame":"공간+전광판+사람 전부 보이는 와이드","gear":"A7V 삼각대","mv":"고정","len":"30s / 10컷","pri":"★★★","chk":"C","note":"핵심 대표컷. 사진은 연사로 결정적 순간","tasks":["영상","사진"]},{"id":"d1-23","no":23,"time":"17:20~18:15","block":"체험 메인","name":"발 인터랙션 / 화면 터치","fmt":"영상+사진","frame":"로우앵글 발, 손+화면 미디엄","gear":"A7V + RS4","mv":"무빙","len":"10s×2 / 6컷","pri":"★★★","chk":"C","note":"","tasks":["영상","사진"]},{"id":"d1-24","no":24,"time":"17:20~18:15","block":"체험 메인","name":"뒤에서 보는 체험 장면","fmt":"영상+사진","frame":"체험자 뒷모습 + 전광판 풀샷","gear":"A7V 삼각대","mv":"고정","len":"20s / 8컷","pri":"★★★","chk":"C","note":"얼굴 노출 부담 없는 컷 — 홍보물 활용도 최고","tasks":["영상","사진"]},{"id":"d1-25","no":25,"time":"17:20~18:15","block":"체험 메인","name":"측면 / 리액션","fmt":"영상+사진","frame":"측면 미디엄, 표정·환호 클로즈업","gear":"A7V + RS4","mv":"무빙","len":"15s / 10컷","pri":"★★","chk":"C","note":"초상권 동의 확인","tasks":["영상","사진"]},{"id":"d1-26","no":26,"time":"17:20~18:15","block":"체험 메인","name":"파이널 포즈 / 결과 화면","fmt":"영상+사진","frame":"파이널 포즈 풀샷 → 결과 화면 클로즈업","gear":"A7V 삼각대","mv":"고정","len":"15s / 6컷","pri":"★★★","chk":"C","note":"","tasks":["영상","사진"]},{"id":"d1-27","no":27,"time":"17:20~18:15","block":"체험 메인","name":"세로 체험 스틸 (SNS용)","fmt":"사진","frame":"9:16 세로, 인물+전광판","gear":"A7V","mv":"—","len":"10컷","pri":"★★★","chk":"E","note":"","tasks":["사진"]},{"id":"d1-28","no":28,"time":"18:15~18:45","block":"POV/디테일","name":"Insta360 POV 체험 1회 완주","fmt":"영상","frame":"체험자 시점, 입장~결과까지","gear":"Insta360","mv":"무빙","len":"체험 1회","pri":"★★","chk":"D","note":"메인카메라 컷 확보 후","tasks":["영상"]},{"id":"d1-29","no":29,"time":"18:15~18:45","block":"POV/디테일","name":"손 / 발 클로즈업","fmt":"영상+사진","frame":"터치 순간, 바닥 인터랙션 클로즈업","gear":"A7V 핸드헬드","mv":"고정","len":"10s×2 / 6컷","pri":"★★","chk":"C","note":"","tasks":["영상","사진"]},{"id":"d1-30","no":30,"time":"18:15~18:45","block":"POV/디테일","name":"UI 화면 디테일","fmt":"영상+사진","frame":"게임 UI·안내 화면 클로즈업","gear":"A7V 핸드헬드","mv":"고정","len":"10s / 4컷","pri":"★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d1-31","no":31,"time":"18:45~19:15","block":"굿즈/포토존","name":"굿즈존 HERO","fmt":"영상+사진","frame":"굿즈 진열 전체 정면","gear":"A7V 삼각대","mv":"고정","len":"10s / 5컷","pri":"★★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d1-32","no":32,"time":"18:45~19:15","block":"굿즈/포토존","name":"상품 대표컷 (제품 사진)","fmt":"사진","frame":"정면 + 45도, 상품 2~3종, 배경 정돈","gear":"A7V 핸드헬드","mv":"—","len":"12컷","pri":"★★★","chk":"E","note":"상품별 반복 금지 — 대표만. 얕은 심도","tasks":["사진"]},{"id":"d1-33","no":33,"time":"18:45~19:15","block":"굿즈/포토존","name":"굿즈 집는 손","fmt":"영상+사진","frame":"손이 상품 집는 클로즈업","gear":"A7V 핸드헬드","mv":"고정","len":"10s / 4컷","pri":"★★","chk":"D","note":"","tasks":["영상","사진"]},{"id":"d1-34","no":34,"time":"18:45~19:15","block":"굿즈/포토존","name":"포토존 + 촬영 장면","fmt":"영상+사진","frame":"포토존 전체 → 관람객 촬영 모습","gear":"A7V + RS4","mv":"무빙","len":"15s / 5컷","pri":"★★","chk":"D","note":"","tasks":["영상","사진"]},{"id":"d1-35","no":35,"time":"18:45~19:15","block":"굿즈/포토존","name":"NFC / 감정평가서","fmt":"영상+사진","frame":"NFC 태깅 동작 + 감정평가서 클로즈업","gear":"A7V 핸드헬드","mv":"고정","len":"10s×2 / 6컷","pri":"★★★","chk":"A","note":"흰디 전용 — 철거 후 재촬영 불가","tasks":["영상","사진"]},{"id":"d1-36","no":36,"time":"18:45~19:15","block":"굿즈/포토존","name":"로고 / 사인 디테일","fmt":"사진","frame":"로고·사인 클로즈업, 얕은 심도","gear":"A7V 핸드헬드","mv":"—","len":"5컷","pri":"★★","chk":"D","note":"","tasks":["사진"]},{"id":"d1-37","no":37,"time":"19:15~19:35","block":"현장감","name":"관람객 흐름 와이드","fmt":"영상+사진","frame":"공간 전체 + 사람 흐름","gear":"A7V 삼각대","mv":"고정","len":"30s / 8컷","pri":"★★★","chk":"A","note":"운영 분위기 증빙","tasks":["영상","사진"]},{"id":"d1-38","no":38,"time":"19:15~19:35","block":"현장감","name":"전광판을 보는 사람 / 좌우 트래킹","fmt":"영상","frame":"관람객 뒷모습+전광판, 트래킹 무빙","gear":"A7V + RS4","mv":"무빙","len":"15s+20s","pri":"★★","chk":"D","note":"","tasks":["영상"]},{"id":"d1-39","no":39,"time":"19:15~19:35","block":"현장감","name":"사과당 / 매트블랙","fmt":"영상+사진","frame":"각 1컷씩","gear":"A7V 핸드헬드","mv":"고정","len":"10s×2 / 4컷","pri":"★★","chk":"D","note":"체크리스트 D 항목","tasks":["영상","사진"]},{"id":"d1-40","no":40,"time":"19:35~19:50","block":"외부 전광판 (야간)","name":"외부 전광판 정면 와이드 — 야간","fmt":"영상+사진","frame":"해 진 뒤 점등 상태, 정면 와이드","gear":"A7V 삼각대","mv":"고정","len":"20s / 10컷","pri":"★★★","chk":"E","note":"9/16 일몰 약 18:35 — 이 시간대 아니면 야간 버전 없음","tasks":["영상","사진"]},{"id":"d1-41","no":41,"time":"19:35~19:50","block":"외부 전광판 (야간)","name":"외부 전광판 콘텐츠 풀루프 — 야간","fmt":"영상","frame":"화면 꽉 채운 미디엄, 통으로","gear":"A7V 삼각대","mv":"고정","len":"콘텐츠 1루프","pri":"★★★","chk":"E","note":"야간은 노출 오버 주의 — 화면 기준 측광","tasks":["영상"]},{"id":"d1-42","no":42,"time":"19:35~19:50","block":"외부 전광판 (야간)","name":"야간 건물 + 행인 컨텍스트","fmt":"영상+사진","frame":"로우앵글, 거리 조명+행인 흐름","gear":"A7V 핸드헬드","mv":"고정","len":"15s / 5컷","pri":"★★","chk":"E","note":"가로/세로 둘 다","tasks":["영상","사진"]},{"id":"d1-43","no":43,"time":"19:50~20:00","block":"누락 회수","name":"체크리스트 A~E 대조 후 누락만","fmt":"—","frame":"—","gear":"—","mv":"—","len":"—","pri":"★★★","chk":"전체","note":"새 연출 금지 / 사진 누락도 함께 확인","tasks":["완료"]},{"id":"d1-44","no":44,"time":"20:00~20:40","block":"철거/전환","name":"흰디 철거 메이킹","fmt":"영상+사진","frame":"철거 시작 와이드 → 진행 타임랩스","gear":"A7V 삼각대","mv":"고정/타임랩스","len":"인터벌 / 10컷","pri":"★★","chk":"—","note":"완성 상태 기대하지 않음","tasks":["영상","사진"]},{"id":"d1-45","no":45,"time":"20:00~20:40","block":"철거/전환","name":"도배·브레드 전환 과정","fmt":"영상+사진","frame":"작업자 손·벽면 변화 미디엄","gear":"A7V 핸드헬드","mv":"고정","len":"10s×N / 10컷","pri":"★","chk":"—","note":"","tasks":["영상","사진"]}],"day2":[{"id":"d2-1","no":1,"time":"08:20~08:35","block":"외부 전광판 (오전)","name":"외부 전광판 정면 와이드 — 오전","fmt":"영상+사진","frame":"아침 자연광, 정면 와이드, 하늘 포함","gear":"A7V 삼각대","mv":"고정","len":"20s / 10컷","pri":"★★★","chk":"E","note":"오전 버전. DAY1 오후 컷과 같은 위치·같은 화각으로 맞출 것","tasks":["영상","사진"]},{"id":"d2-2","no":2,"time":"08:20~08:35","block":"외부 전광판 (오전)","name":"외부 전광판 콘텐츠 풀루프 — 오전","fmt":"영상","frame":"화면 꽉 채운 미디엄, 통으로","gear":"A7V 삼각대","mv":"고정","len":"콘텐츠 1루프","pri":"★★★","chk":"E","note":"브레드 콘텐츠로 교체됐는지 확인","tasks":["영상"]},{"id":"d2-3","no":3,"time":"08:20~08:35","block":"외부 전광판 (오전)","name":"건물 + 전광판 컨텍스트 — 오전","fmt":"영상+사진","frame":"길 건너 로우앵글, 출근 시간 행인","gear":"A7V 핸드헬드","mv":"고정","len":"15s / 5컷","pri":"★★","chk":"E","note":"가로/세로 둘 다","tasks":["영상","사진"]},{"id":"d2-4","no":4,"time":"08:35~09:05","block":"장비 세팅","name":"전날 설정 복원 / 배터리 확인","fmt":"—","frame":"셔터·WB·픽처프로파일 복원","gear":"—","mv":"—","len":"—","pri":"★★★","chk":"—","note":"영상 셔터값, 사진 RAW+JPEG 설정 확인","tasks":["완료"]},{"id":"d2-5","no":5,"time":"09:05~09:30","block":"공간 정리/테스트","name":"LED 노출·플리커·WB 테스트","fmt":"테스트","frame":"전날 셔터값 복원 확인 + 사진 스캔라인 확인","gear":"A7V 삼각대","mv":"고정","len":"10s / 3컷","pri":"★★★","chk":"B","note":"관계자 이동 전 구도 확정","tasks":["확인"]},{"id":"d2-6","no":6,"time":"09:30~10:10","block":"공간 HERO","name":"브레드 정면 와이드 HERO","fmt":"영상+사진","frame":"정면 와이드, 전광판+바닥+굿즈존 한 프레임","gear":"A7V 삼각대","mv":"고정","len":"20s / 5컷","pri":"★★★","chk":"A","note":"사람 없는 상태 최우선 — 09:30~10:40 동선 비우기 요청","tasks":["영상","사진"]},{"id":"d2-7","no":7,"time":"09:30~10:10","block":"공간 HERO","name":"입구 → 메인 시점","fmt":"영상+사진","frame":"입구 눈높이 와이드","gear":"A7V 삼각대","mv":"고정","len":"15s / 3컷","pri":"★★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d2-8","no":8,"time":"09:30~10:10","block":"공간 HERO","name":"좌 / 중앙 / 우 공간","fmt":"영상+사진","frame":"각 벽면·LED 와이드 3컷","gear":"A7V 삼각대","mv":"고정","len":"10s×3 / 9컷","pri":"★★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d2-9","no":9,"time":"09:30~10:10","block":"공간 HERO","name":"XR존 전체 + 바닥","fmt":"영상+사진","frame":"하이앵글 바닥 포함","gear":"A7V 삼각대","mv":"고정","len":"15s / 3컷","pri":"★★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d2-10","no":10,"time":"09:30~10:10","block":"공간 HERO","name":"굿즈존 / 포토존 전체","fmt":"영상+사진","frame":"각 정면 와이드","gear":"A7V 삼각대","mv":"고정","len":"10s×2 / 6컷","pri":"★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d2-11","no":11,"time":"09:30~10:10","block":"공간 HERO","name":"세로 HERO 스틸 (SNS용)","fmt":"사진","frame":"9:16·4:5 세로 구도, 공간 전체","gear":"A7V 삼각대","mv":"—","len":"8컷","pri":"★★★","chk":"E","note":"사람 없을 때만 가능 — 이 타임에 반드시","tasks":["사진"]},{"id":"d2-12","no":12,"time":"10:10~10:45","block":"짐벌 무빙","name":"입구 접근 Push-in","fmt":"영상","frame":"입구 밖→XR존까지 천천히 전진","gear":"A7V + RS4","mv":"무빙","len":"20s","pri":"★★★","chk":"D","note":"브레드 대표 마케팅 영상 오프닝용","tasks":["영상"]},{"id":"d2-13","no":13,"time":"10:10~10:45","block":"짐벌 무빙","name":"공간 좌우 트래킹","fmt":"영상","frame":"전광판 정면 유지하며 좌→우","gear":"A7V + RS4","mv":"무빙","len":"20s","pri":"★★★","chk":"D","note":"왕복 2회","tasks":["영상"]},{"id":"d2-14","no":14,"time":"10:10~10:45","block":"짐벌 무빙","name":"입구 → 체험존 연결 무빙","fmt":"영상","frame":"입구→굿즈존→XR존 원테이크","gear":"A7V + RS4","mv":"무빙","len":"30s","pri":"★★★","chk":"D","note":"","tasks":["영상"]},{"id":"d2-15","no":15,"time":"10:10~10:45","block":"짐벌 무빙","name":"로우앵글 바닥 리빌","fmt":"영상","frame":"바닥 LED에서 틸트업해 벽면까지","gear":"A7V + RS4","mv":"무빙","len":"15s","pri":"★★","chk":"D","note":"","tasks":["영상"]},{"id":"d2-16","no":16,"time":"10:45~11:20","block":"전광판/풀 콘텐츠","name":"전체 LED 풀 콘텐츠 1회 완주","fmt":"영상","frame":"벽+바닥 와이드, 시작~끝 통으로","gear":"A7V 삼각대","mv":"고정","len":"콘텐츠 1루프","pri":"★★★","chk":"B","note":"최우선","tasks":["영상"]},{"id":"d2-17","no":17,"time":"10:45~11:20","block":"전광판/풀 콘텐츠","name":"Front 화면 단독","fmt":"영상+사진","frame":"정면 화면 꽉 채움","gear":"A7V 삼각대","mv":"고정","len":"1루프 / 3컷","pri":"★★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d2-18","no":18,"time":"10:45~11:20","block":"전광판/풀 콘텐츠","name":"Side (좌/우) 화면 단독","fmt":"영상+사진","frame":"좌·우 각각","gear":"A7V 삼각대","mv":"고정","len":"1루프×2 / 6컷","pri":"★★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d2-19","no":19,"time":"10:45~11:20","block":"전광판/풀 콘텐츠","name":"Floor 화면 단독","fmt":"영상+사진","frame":"바닥 하이앵글","gear":"A7V 삼각대","mv":"고정","len":"1루프 / 3컷","pri":"★★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d2-20","no":20,"time":"10:45~11:20","block":"전광판/풀 콘텐츠","name":"화면 + 공간 동시 와이드","fmt":"영상+사진","frame":"3면+바닥 초광각","gear":"A7V 삼각대","mv":"고정","len":"30s / 5컷","pri":"★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d2-21","no":21,"time":"10:45~11:20","block":"전광판/풀 콘텐츠","name":"콘텐츠 주요 장면 스틸","fmt":"사진","frame":"콘텐츠 하이라이트 3~4장면 정지컷","gear":"A7V 삼각대","mv":"—","len":"10컷","pri":"★★★","chk":"E","note":"","tasks":["사진"]},{"id":"d2-22","no":22,"time":"10:45~11:20","block":"전광판/풀 콘텐츠","name":"콘텐츠 전환 / LCD·광고","fmt":"영상+사진","frame":"전환 장면 + LCD 광고","gear":"A7V 삼각대","mv":"고정","len":"10s×2 / 4컷","pri":"★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d2-23","no":23,"time":"11:20~12:00","block":"체험 메인","name":"2인 입장 / 시작","fmt":"영상","frame":"뒤에서 팔로우","gear":"A7V + RS4","mv":"무빙","len":"15s","pri":"★★★","chk":"C","note":"관계자 많으면 프레임 좁혀 운영감 활용","tasks":["영상"]},{"id":"d2-24","no":24,"time":"11:20~12:00","block":"체험 메인","name":"2인 플레이 와이드 (대표 체험컷)","fmt":"영상+사진","frame":"공간+전광판+사람","gear":"A7V 삼각대","mv":"고정","len":"30s / 10컷","pri":"★★★","chk":"C","note":"사진은 연사로 결정적 순간","tasks":["영상","사진"]},{"id":"d2-25","no":25,"time":"11:20~12:00","block":"체험 메인","name":"발 인터랙션 / 화면 터치","fmt":"영상+사진","frame":"로우앵글 발, 손+화면 미디엄","gear":"A7V + RS4","mv":"무빙","len":"10s×2 / 6컷","pri":"★★★","chk":"C","note":"","tasks":["영상","사진"]},{"id":"d2-26","no":26,"time":"11:20~12:00","block":"체험 메인","name":"뒷모습 / 측면","fmt":"영상+사진","frame":"뒷모습 풀샷, 측면 미디엄","gear":"A7V 삼각대","mv":"고정","len":"15s×2 / 8컷","pri":"★★★","chk":"C","note":"","tasks":["영상","사진"]},{"id":"d2-27","no":27,"time":"11:20~12:00","block":"체험 메인","name":"리액션","fmt":"영상+사진","frame":"표정·환호 미디엄 클로즈업","gear":"A7V + RS4","mv":"무빙","len":"10s / 10컷","pri":"★★","chk":"C","note":"초상권 동의 확인","tasks":["영상","사진"]},{"id":"d2-28","no":28,"time":"11:20~12:00","block":"체험 메인","name":"파이널 장면 / 결과 화면","fmt":"영상+사진","frame":"파이널 풀샷 → 결과 화면 클로즈업","gear":"A7V 삼각대","mv":"고정","len":"15s / 6컷","pri":"★★★","chk":"C","note":"","tasks":["영상","사진"]},{"id":"d2-29","no":29,"time":"11:20~12:00","block":"체험 메인","name":"손 / 발 클로즈업","fmt":"영상+사진","frame":"터치·스텝 클로즈업","gear":"A7V 핸드헬드","mv":"고정","len":"10s×2 / 6컷","pri":"★★","chk":"C","note":"","tasks":["영상","사진"]},{"id":"d2-30","no":30,"time":"11:20~12:00","block":"체험 메인","name":"세로 체험 스틸 (SNS용)","fmt":"사진","frame":"9:16 세로, 인물+전광판","gear":"A7V","mv":"—","len":"10컷","pri":"★★★","chk":"E","note":"","tasks":["사진"]},{"id":"d2-31","no":31,"time":"11:20~12:00","block":"체험 메인","name":"Insta360 POV","fmt":"영상","frame":"체험자 시점 1회 완주","gear":"Insta360","mv":"무빙","len":"체험 1회","pri":"★★","chk":"D","note":"메인 컷 확보 후","tasks":["영상"]},{"id":"d2-32","no":32,"time":"12:00~12:25","block":"굿즈/포토존","name":"굿즈존 HERO / 포토존 HERO","fmt":"영상+사진","frame":"각 정면 와이드","gear":"A7V 삼각대","mv":"고정","len":"10s×2 / 8컷","pri":"★★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d2-33","no":33,"time":"12:00~12:25","block":"굿즈/포토존","name":"대표 상품 클로즈업 (제품 사진)","fmt":"사진","frame":"정면 + 45도, 2~3종, 배경 정돈","gear":"A7V 핸드헬드","mv":"—","len":"12컷","pri":"★★★","chk":"E","note":"대표컷 중심으로 빠르게","tasks":["사진"]},{"id":"d2-34","no":34,"time":"12:00~12:25","block":"굿즈/포토존","name":"로고 / 사인 디테일","fmt":"사진","frame":"얕은 심도 클로즈업","gear":"A7V 핸드헬드","mv":"—","len":"5컷","pri":"★★","chk":"D","note":"","tasks":["사진"]},{"id":"d2-35","no":35,"time":"12:00~12:25","block":"굿즈/포토존","name":"굿즈 집는 손 / 포토존 촬영 장면","fmt":"영상+사진","frame":"손 클로즈업, 촬영 장면 미디엄","gear":"A7V + RS4","mv":"무빙","len":"10s×2 / 5컷","pri":"★★","chk":"D","note":"","tasks":["영상","사진"]},{"id":"d2-36","no":36,"time":"12:25~12:50","block":"분위기/B-roll","name":"사람 흐름 와이드","fmt":"영상+사진","frame":"공간 전체 + 사람 흐름 (운영 분위기)","gear":"A7V 삼각대","mv":"고정","len":"30s / 8컷","pri":"★★★","chk":"A","note":"관계자 많을 때 자연스러운 현장감으로 활용","tasks":["영상","사진"]},{"id":"d2-37","no":37,"time":"12:25~12:50","block":"분위기/B-roll","name":"전광판 바라보는 사람","fmt":"영상+사진","frame":"뒷모습 + 전광판","gear":"A7V + RS4","mv":"무빙","len":"15s / 5컷","pri":"★★","chk":"D","note":"","tasks":["영상","사진"]},{"id":"d2-38","no":38,"time":"12:25~12:50","block":"분위기/B-roll","name":"손 디테일 / 운영감","fmt":"영상+사진","frame":"안내·응대·굿즈 손 디테일","gear":"A7V 핸드헬드","mv":"고정","len":"10s×N / 8컷","pri":"★★","chk":"D","note":"","tasks":["영상","사진"]},{"id":"d2-39","no":39,"time":"12:25~12:50","block":"분위기/B-roll","name":"사과당 / 매트블랙","fmt":"영상+사진","frame":"각 1컷","gear":"A7V 핸드헬드","mv":"고정","len":"10s×2 / 4컷","pri":"★★","chk":"D","note":"","tasks":["영상","사진"]},{"id":"d2-40","no":40,"time":"12:50~13:05","block":"누락 체크","name":"체크리스트 A~E 대조 후 누락만","fmt":"—","frame":"핸드폰 보충 가능 컷과 구분","gear":"—","mv":"—","len":"—","pri":"★★★","chk":"전체","note":"안내물·사인·세부 상품은 반납 후 핸드폰 보충","tasks":["완료"]},{"id":"d2-41","no":41,"time":"13:05~13:25","block":"패킹","name":"장비 수량·메모리 분리","fmt":"—","frame":"—","gear":"—","mv":"—","len":"—","pri":"★★★","chk":"—","note":"13:25 출발 목표","tasks":["완료"]},{"id":"d2-42","no":42,"time":"13:25~14:05","block":"이동","name":"신촌 → 합정 SLR렌트","fmt":"—","frame":"—","gear":"—","mv":"—","len":"—","pri":"★★★","chk":"—","note":"교통 변수 포함 40분 버퍼","tasks":["완료"]},{"id":"d2-43","no":43,"time":"14:05~14:30","block":"반납","name":"장비 검사 및 반납","fmt":"—","frame":"—","gear":"—","mv":"—","len":"—","pri":"★★★","chk":"—","note":"14:30 대여 종료","tasks":["완료"]}],"chk":{"A. 공간 / 증빙":["행사장 전체 정면 HERO","입구에서 보이는 전체 공간","좌 / 중앙 / 우 공간","XR존 전체 + 바닥 포함","굿즈존 전체","포토존 전체","사람 없는 완성 공간","사람 있는 운영 분위기"],"B. 전광판 / 콘텐츠":["전체 화면 풀 콘텐츠 1회 완주","Front 화면","Left 화면","Right 화면","Floor 화면","벽+바닥 동시 와이드","콘텐츠 전환 장면","LCD 전체 / 광고 클로즈업"],"C. 체험":["2인 입장 / 시작","발 인터랙션","화면 터치","2인 플레이 와이드","손 / 발 클로즈업","뒤에서 보는 체험 장면","성공 / 리액션","파이널 포즈 / 결과 화면"],"D. 마케팅 B-roll":["입구 접근 Push-in","공간 좌우 트래킹","전광판을 보는 사람","로고 / 사인 디테일","굿즈 집는 손","포토존 촬영 장면","Insta360 POV","공간 속 사람 흐름","사과당 촬영","매트블랙 촬영"],"E. 사진 전용":["세로(9:16·4:5) 공간 HERO 스틸","세로 체험 스틸","콘텐츠 주요 장면 스틸","제품 대표 스틸 (정면+45도)","로고 / 사인 스틸","리액션 연사 스틸","RAW+JPEG 설정 확인"],"F. 외부 전광판":["오전 정면 와이드 (DAY2 08:20)","오전 콘텐츠 풀루프","오후 정면 와이드 (DAY1 15:30)","오후 콘텐츠 풀루프","야간 정면 와이드 (DAY1 19:35)","야간 콘텐츠 풀루프","건물+행인 컨텍스트 (시간대별)","세 버전 화각·위치 동일 여부 확인"]}};
+var LS = 'shotlist20260916';
+var API = 'https://jsonblob.com/api/jsonBlob';
+var state = {};           /* key -> {v:1|0, t:ms, by:name} */
+var room = null, me = '', dirty = false, online = false, pulling = false, pushTimer = null;
+var tab='day1', filter='all', todoFold=false;
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+function hhmm(){ var d=new Date(); return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }
+
+/* ---------- local mirror ---------- */
+function saveLocal(){ try{ localStorage.setItem(LS, JSON.stringify({room:room,me:me,state:state})); }catch(e){} }
+function loadLocal(){
+  try{ var r=JSON.parse(localStorage.getItem(LS)||'{}');
+    if(r.state) state=r.state; if(r.room) room=r.room; if(r.me) me=r.me; }catch(e){}
+}
+/* ---------- merge ---------- */
+function mergeIn(remote){
+  var changed=false;
+  for(var key in remote){ if(!remote.hasOwnProperty(key)) continue;
+    var r=remote[key], l=state[key];
+    if(!l || (r.t||0) > (l.t||0)){ state[key]=r; changed=true; }
+  }
+  return changed;
+}
+/* ---------- sync ---------- */
+function pill(txt, cls){ var p=$('syncPill'); p.textContent=txt; p.className='sync '+(cls||''); }
+function pull(){
+  if(!room || pulling) return Promise.resolve();
+  pulling=true;
+  return fetch(API+'/'+room, {headers:{'Accept':'application/json'}, cache:'no-store'})
+    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(doc){
+      pulling=false; online=true;
+      var ch = mergeIn(doc.entries||{});
+      pill('동기화 '+hhmm(), 'on');
+      if(ch) render(true);
+      if(dirty) push();
+      saveLocal();
+    })
+    .catch(function(){ pulling=false; online=false; pill('오프라인 · 이 기기에만 저장','off'); });
+}
+function push(){
+  if(!room) return;
+  if(pushTimer) clearTimeout(pushTimer);
+  pushTimer = setTimeout(function(){
+    fetch(API+'/'+room, {method:'PUT', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({v:1, updated:Date.now(), entries:state})})
+      .then(function(r){ if(!r.ok) throw new Error(r.status);
+        dirty=false; online=true; pill('동기화 '+hhmm(),'on'); })
+      .catch(function(){ dirty=true; online=false; pill('오프라인 · 이 기기에만 저장','off'); });
+  }, 500);
+}
+function createRoom(){
+  pill('방 만드는 중…','');
+  return fetch(API, {method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({v:1, updated:Date.now(), entries:state})})
+   .then(function(r){
+      var loc = r.headers.get('Location') || r.headers.get('location') || r.headers.get('X-jsonblob');
+      if(!loc) throw new Error('no-location');
+      room = String(loc).split('/').pop();
+      location.hash = 'room=' + room;
+      saveLocal(); pill('동기화 '+hhmm(),'on'); online=true;
+      return room;
+   });
+}
+function setTask(key, val){
+  state[key] = {v: val?1:0, t: Date.now(), by: me||''};
+  dirty = true; saveLocal(); push(); render(true);
+}
+/* ---------- data helpers ---------- */
+function k(id,t){ return id+'::'+t; }
+function isDone(s,t){ var e=state[k(s.id,t)]; return !!(e && e.v); }
+function whoDid(s,t){ var e=state[k(s.id,t)]; return (e&&e.v&&e.by)?e.by:''; }
+function shotDone(s){ for(var i=0;i<s.tasks.length;i++) if(!isDone(s,s.tasks[i])) return false; return true; }
+function totalUnits(l){ var n=0; l.forEach(function(s){ n+=s.tasks.length; }); return n; }
+function doneUnits(l){ var n=0; l.forEach(function(s){ s.tasks.forEach(function(t){ if(isDone(s,t)) n++; }); }); return n; }
+function parseSlot(t){ var m=t.match(/(\d{2}):(\d{2})~(\d{2}):(\d{2})/); return m?{s:+m[1]*60+ +m[2], e:+m[3]*60+ +m[4]}:null; }
+function currentKey(list){ var d=new Date(), n=d.getHours()*60+d.getMinutes();
+  for(var i=0;i<list.length;i++){ var p=parseSlot(list[i].time); if(p&&n>=p.s&&n<p.e) return list[i].time+'|'+list[i].block; }
+  return null; }
+/* ---------- render ---------- */
+function card(lb,v,tot,cls,inv){ var pct=tot?Math.round((inv?(tot-v):v)/tot*100):0;
+  return '<div class="stat '+cls+'"><div class="lb">'+lb+'</div><div class="vl">'+v+
+   '<span style="font-size:11px;color:var(--tx3);font-weight:500"> / '+tot+'</span></div>'+
+   '<div class="bar"><i style="width:'+pct+'%"></i></div></div>'; }
+function renderStats(){
+  if(tab==='chk'){
+    var items=[], d=0, cols=['d1v','d1p','d2v','d2p'];
+    Object.keys(DATA.chk).forEach(function(sec){ DATA.chk[sec].forEach(function(it){ items.push(sec+'|'+it); }); });
+    items.forEach(function(i){ cols.forEach(function(c){ var e=state['ck::'+i+'::'+c]; if(e&&e.v) d++; }); });
+    $('stats').innerHTML = card('전체 체크', d, items.length*4, 'done'); return;
+  }
+  var list=DATA[tab], pri=list.filter(function(s){return s.pri==='★★★';});
+  var ph=list.filter(function(s){return s.tasks.indexOf('사진')>=0;}), phDn=0;
+  ph.forEach(function(s){ if(isDone(s,'사진')) phDn++; });
+  $('stats').innerHTML = card('찍은 컷',doneUnits(list),totalUnits(list),'done') +
+    card('★★★ 남음', totalUnits(pri)-doneUnits(pri), totalUnits(pri), 'crit', true) +
+    card('사진', phDn, ph.length, '');
+}
+function renderTodo(){
+  var box=$('todo'); if(tab==='chk'){ box.innerHTML=''; return; }
+  var rows=[]; DATA[tab].forEach(function(s){ if(s.pri!=='★★★') return;
+    s.tasks.forEach(function(t){ if(!isDone(s,t)) rows.push({s:s,t:t}); }); });
+  if(!rows.length){ box.innerHTML='<div class="todo" style="border-color:rgba(63,185,80,.4);background:rgba(63,185,80,.07)"><h3 style="color:var(--ok)">✓ 필수 컷 전부 확보 완료</h3></div>'; return; }
+  box.innerHTML='<div class="todo '+(todoFold?'fold':'')+'" id="todoBox"><h3>⚠ 아직 안 찍은 필수 컷 <span class="cnt">'+rows.length+'</span></h3><ul>'+
+    rows.map(function(r){ return '<li data-go="'+r.s.id+'"><span class="t">'+r.s.time+'</span> · <b>'+esc(r.s.name)+'</b> <span class="t">('+r.t+')</span></li>'; }).join('')+'</ul></div>';
+  box.querySelector('#todoBox h3').onclick=function(){ todoFold=!todoFold; renderTodo(); };
+  Array.prototype.forEach.call(box.querySelectorAll('li[data-go]'), function(li){
+    li.onclick=function(){ var el=$('shot-'+li.getAttribute('data-go'));
+      if(el){ el.scrollIntoView({behavior:'smooth',block:'center'});
+        el.style.boxShadow='inset 0 0 0 2px var(--acc)'; setTimeout(function(){el.style.boxShadow='';},1600);} };
+  });
+}
+function renderNow(){
+  var box=$('nowbar'); if(tab==='chk'){ box.innerHTML=''; return; }
+  var ck=currentKey(DATA[tab]); if(!ck){ box.innerHTML=''; return; }
+  var p=ck.split('|');
+  box.innerHTML='<div class="now-bar">지금 진행 중 &nbsp;<b>'+p[0]+' · '+esc(p[1])+'</b><button id="goNow">이동</button></div>';
+  $('goNow').onclick=jumpNow;
+}
+function jumpNow(){
+  var ck=currentKey(DATA[tab]); if(!ck){ alert('현재 시각에 해당하는 촬영 블록이 없습니다.'); return; }
+  var els=document.querySelectorAll('[data-bk]');
+  for(var i=0;i<els.length;i++) if(els[i].getAttribute('data-bk')===ck){ els[i].scrollIntoView({behavior:'smooth',block:'start'}); return; }
+}
+function pass(s){
+  if(filter==='todo') return !shotDone(s);
+  if(filter==='done') return shotDone(s);
+  if(filter==='pri') return s.pri==='★★★';
+  if(filter==='photo') return s.tasks.indexOf('사진')>=0;
+  if(filter==='ext') return s.block.indexOf('외부 전광판')>=0;
+  if(filter==='move') return s.mv.indexOf('무빙')>=0;
+  return true;
+}
+function shotHTML(s){
+  return '<div class="shot '+(shotDone(s)?'done':'')+'" id="shot-'+s.id+'"><div class="s-top">'+
+   '<div class="no">'+s.no+'</div><div class="s-main"><div class="s-name">'+esc(s.name)+'</div><div class="s-meta">'+
+   (s.pri==='★★★'?'<span class="tg pri">★★★ 필수</span>':(s.pri==='★★'?'<span class="tg">★★</span>':''))+
+   (s.fmt&&s.fmt!=='—'?'<span class="tg '+(s.tasks.indexOf('사진')>=0?'ph':'')+'">'+esc(s.fmt)+'</span>':'')+
+   (s.gear&&s.gear!=='—'?'<span class="tg">'+esc(s.gear)+'</span>':'')+
+   (s.mv&&s.mv!=='—'?'<span class="tg '+(s.mv.indexOf('무빙')>=0?'mv':'')+'">'+esc(s.mv)+'</span>':'')+
+   (s.len&&s.len!=='—'?'<span class="tg">'+esc(s.len)+'</span>':'')+
+   (s.chk&&s.chk!=='—'?'<span class="tg">체크 '+esc(s.chk)+'</span>':'')+'</div>'+
+   (s.frame&&s.frame!=='—'?'<div class="s-frame">'+esc(s.frame)+'</div>':'')+
+   (s.note?'<div class="s-note">'+esc(s.note)+'</div>':'')+
+   '<div class="acts">'+s.tasks.map(function(t){ var w=whoDid(s,t);
+     return '<div class="act '+(isDone(s,t)?'on':'')+'" data-id="'+s.id+'" data-t="'+t+'"><span class="bx"></span>'+t+
+            (w?'<span class="who">'+esc(w)+'</span>':'')+'</div>'; }).join('')+
+   '</div></div></div></div>';
+}
+function renderMain(){
+  var main=$('main');
+  $('filters').style.display = tab==='chk'?'none':'flex';
+  if(tab==='chk'){ renderChk(main); return; }
+  var list=DATA[tab], ck=currentKey(list), groups=[], cur=null;
+  list.forEach(function(s){ var key=s.time+'|'+s.block;
+    if(!cur||cur.key!==key){ cur={key:key,time:s.time,block:s.block,items:[]}; groups.push(cur); }
+    cur.items.push(s); });
+  var html='', shown=0;
+  groups.forEach(function(g){
+    var vis=g.items.filter(pass); if(!vis.length) return; shown+=vis.length;
+    var ext=g.block.indexOf('외부 전광판')>=0;
+    html+='<div class="blk"><div class="blk-h '+(ext?'ext':'')+' '+(ck===g.key?'cur':'')+'" data-bk="'+esc(g.key)+'">'+
+      '<span class="t">'+g.time+'</span><span class="n">'+esc(g.block)+'</span><span class="p">'+
+      doneUnits(g.items)+'/'+totalUnits(g.items)+'</span></div><div class="blk-b">'+vis.map(shotHTML).join('')+'</div></div>';
+  });
+  main.innerHTML = shown?html:'<div class="empty">해당하는 컷이 없습니다.</div>';
+  Array.prototype.forEach.call(main.querySelectorAll('.act'), function(a){
+    a.onclick=function(){
+      var key=k(a.getAttribute('data-id'), a.getAttribute('data-t'));
+      var cur=state[key]; setTask(key, !(cur&&cur.v));
+    };
+  });
+}
+function renderChk(main){
+  var cols=[['d1v','D1영'],['d1p','D1사'],['d2v','D2영'],['d2p','D2사']], html='';
+  Object.keys(DATA.chk).forEach(function(sec){
+    var arr=DATA.chk[sec], d=0;
+    arr.forEach(function(it){ cols.forEach(function(c){ var e=state['ck::'+sec+'|'+it+'::'+c[0]]; if(e&&e.v) d++; }); });
+    html+='<div class="ck-sec"><div class="ck-h">'+esc(sec)+'<span class="p">'+d+'/'+(arr.length*4)+'</span></div>'+
+     '<div class="ck-legend">'+cols.map(function(c){return '<span>'+c[1]+'</span>';}).join('')+'</div><div class="ck-b">'+
+     arr.map(function(it){ return '<div class="ck-row"><div class="lb">'+esc(it)+'</div><div class="bt">'+
+       cols.map(function(c){ var key='ck::'+sec+'|'+it+'::'+c[0]; var e=state[key];
+         return '<div class="mini '+((e&&e.v)?'on':'')+'" data-key="'+esc(key)+'">'+c[1]+'</div>'; }).join('')+
+       '</div></div>'; }).join('')+'</div></div>';
+  });
+  main.innerHTML=html;
+  Array.prototype.forEach.call(main.querySelectorAll('.mini'), function(m){
+    m.onclick=function(){ var key=m.getAttribute('data-key'); var e=state[key]; setTask(key, !(e&&e.v)); };
+  });
+}
+function render(keep){
+  var y=window.scrollY||0;
+  renderStats(); renderTodo(); renderNow(); renderMain();
+  $('whoLabel').textContent = (me?'체크 이름: '+me:'이름 미설정') + (room?' · 방 '+room.slice(-6):' · 개인 모드');
+  if(keep) window.scrollTo(0,y);
+}
+/* ---------- modal ---------- */
+function modal(html){ $('mbox').innerHTML=html; $('modal').classList.add('on'); }
+function closeModal(){ $('modal').classList.remove('on'); }
+$('modal').onclick=function(e){ if(e.target===$('modal')) closeModal(); };
+function askName(next){
+  modal('<h3>이름을 입력하세요</h3><p>누가 어떤 컷을 체크했는지 표시됩니다.</p>'+
+    '<input id="mName" placeholder="예: 상우" value="'+esc(me)+'">'+
+    '<div class="row"><button class="pri" id="mOk">확인</button></div>');
+  $('mName').focus();
+  $('mOk').onclick=function(){ me=($('mName').value||'').trim().slice(0,8); saveLocal(); closeModal(); render(true); if(next) next(); };
+}
+function roomModal(){
+  var url = location.origin + location.pathname + (room?('#room='+room):'');
+  modal('<h3>실시간 공유</h3>'+
+   (room ? '<p>아래 주소를 스태프에게 보내면 같은 체크 상태를 함께 봅니다. 5초마다 자동 동기화됩니다.</p>'+
+           '<input id="mUrl" readonly value="'+esc(url)+'">'+
+           '<div class="row"><button class="pri" id="mCopy">주소 복사</button><button id="mLeave">방 나가기</button></div>'
+         : '<p>아직 공유 방이 없습니다. 방을 만들면 주소가 생기고, 그 주소를 연 사람끼리 체크가 실시간으로 연동됩니다.</p>'+
+           '<div class="row"><button class="pri" id="mCreate">방 만들기</button></div>'+
+           '<input id="mJoin" placeholder="이미 받은 방 ID가 있다면 붙여넣기" style="margin-top:10px">'+
+           '<div class="row"><button id="mJoinBtn">방 참여</button></div>')+
+   '<div class="row" style="margin-top:12px"><button id="mName2">이름 변경</button><button id="mReset">전체 초기화</button></div>'+
+   '<div class="hint">· 인터넷이 끊기면 이 기기에만 저장되고, 연결되면 자동으로 합쳐집니다.<br>· 같은 컷을 두 사람이 만지면 나중에 누른 쪽이 반영됩니다.</div>');
+  if(room){
+    $('mCopy').onclick=function(){ var i=$('mUrl'); i.select();
+      if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(i.value).then(function(){alert('주소를 복사했습니다.');},function(){}); }
+      else { try{document.execCommand('copy'); alert('주소를 복사했습니다.');}catch(e){} } };
+    $('mLeave').onclick=function(){ if(confirm('공유 방에서 나갑니다. 체크는 이 기기에 남습니다.')){ room=null; location.hash=''; saveLocal(); pill('개인 모드',''); closeModal(); render(true); } };
+  } else {
+    $('mCreate').onclick=function(){ createRoom().then(function(){ closeModal(); roomModal(); })
+      .catch(function(){ alert('방 생성에 실패했습니다. 인터넷 연결을 확인하거나 잠시 후 다시 시도하세요.'); }); };
+    $('mJoinBtn').onclick=function(){ var v=($('mJoin').value||'').trim(); if(!v) return;
+      v = v.indexOf('room=')>=0 ? v.split('room=')[1] : v.split('/').pop();
+      room=v; location.hash='room='+room; saveLocal(); closeModal(); pull().then(function(){ render(true); }); };
+  }
+  $('mName2').onclick=function(){ askName(roomModal); };
+  $('mReset').onclick=function(){ if(confirm('모든 체크를 초기화합니다. 공유 중이면 모두에게 반영됩니다.')){
+    var now=Date.now(); Object.keys(state).forEach(function(kk){ state[kk]={v:0,t:now,by:me}; });
+    dirty=true; saveLocal(); push(); closeModal(); render(); } };
+}
+/* ---------- shell ---------- */
+Array.prototype.forEach.call(document.querySelectorAll('.tab'), function(t){
+  t.onclick=function(){ Array.prototype.forEach.call(document.querySelectorAll('.tab'),function(x){x.classList.remove('on');});
+    t.classList.add('on'); tab=t.getAttribute('data-tab'); window.scrollTo(0,0); render(); }; });
+Array.prototype.forEach.call(document.querySelectorAll('.chip'), function(c){
+  c.onclick=function(){ Array.prototype.forEach.call(document.querySelectorAll('.chip'),function(x){x.classList.remove('on');});
+    c.classList.add('on'); filter=c.getAttribute('data-f'); render(); }; });
+$('btnNow').onclick=jumpNow;
+$('btnRoom').onclick=roomModal;
+$('syncPill').onclick=function(){ if(room) pull(); else roomModal(); };
+$('btnCopy').onclick=function(){
+  var lines=[];
+  ['day1','day2'].forEach(function(d){
+    var list=DATA[d], pri=list.filter(function(s){return s.pri==='★★★';});
+    lines.push('['+(d==='day1'?'DAY1 흰디 9/16':'DAY2 브레드 9/17')+'] '+doneUnits(list)+'/'+totalUnits(list)+
+      ' 완료 · 필수 미확보 '+(totalUnits(pri)-doneUnits(pri))+'건');
+    list.forEach(function(s){ if(s.pri!=='★★★') return;
+      s.tasks.forEach(function(t){ if(!isDone(s,t)) lines.push('  - '+s.time+' '+s.name+' ('+t+')'); }); });
+  });
+  var txt=lines.join('\n');
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(function(){alert('현황을 복사했습니다.');},function(){prompt('복사하세요',txt);});
+  else prompt('복사하세요', txt);
+};
+/* ---------- boot ---------- */
+loadLocal();
+var h = location.hash.replace(/^#/,'');
+if(h.indexOf('room=')>=0){ room = h.split('room=')[1].split('&')[0]; }
+render();
+if(room){ pill('연결 중…',''); pull(); setInterval(function(){ pull(); }, 5000); }
+else pill('개인 모드 · 공유하려면 탭','');
+setInterval(function(){ renderNow(); }, 30000);
+document.addEventListener('visibilitychange', function(){ if(!document.hidden && room) pull(); });
+if(!me) setTimeout(function(){ askName(); }, 400);
+})();
+</script>
+</body>
+</html>
