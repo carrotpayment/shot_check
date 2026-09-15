@@ -163,73 +163,117 @@ color:var(--tx);font-size:13px;font-weight:700;cursor:pointer}
 (function(){
 var DATA = {"day1":[{"id":"d1-1","no":1,"time":"15:30~15:45","block":"외부 전광판 (오후)","name":"외부 전광판 정면 와이드 — 오후","fmt":"영상+사진","frame":"건물 외벽 전광판 정면, 수평 맞춤, 하늘 포함","gear":"A7V 삼각대","mv":"고정","len":"20s / 10컷","pri":"★★★","chk":"E","note":"오후 자연광 버전. 도착 직후 세팅 전에 먼저 확보","tasks":["영상","사진"]},{"id":"d1-2","no":2,"time":"15:30~15:45","block":"외부 전광판 (오후)","name":"외부 전광판 콘텐츠 풀루프 — 오후","fmt":"영상","frame":"화면 꽉 채운 미디엄, 시작~끝 통으로","gear":"A7V 삼각대","mv":"고정","len":"콘텐츠 1루프","pri":"★★★","chk":"E","note":"셔터 1/50·1/60 플리커 확인 후","tasks":["영상"]},{"id":"d1-3","no":3,"time":"15:30~15:45","block":"외부 전광판 (오후)","name":"건물 + 전광판 컨텍스트","fmt":"영상+사진","frame":"길 건너 로우앵글, 건물 규모+행인 흐름","gear":"A7V 핸드헬드","mv":"고정","len":"15s / 5컷","pri":"★★","chk":"E","note":"가로/세로 둘 다","tasks":["영상","사진"]},{"id":"d1-4","no":4,"time":"15:45~16:10","block":"현장 세팅","name":"테스트 컷 — LED 노출/플리커","fmt":"테스트","frame":"전광판 정면 미디엄, 셔터 1/50·1/60·1/100 비교","gear":"A7V 삼각대","mv":"고정","len":"10s×3","pri":"★★★","chk":"B","note":"영상 셔터값 확정 후 하루 종일 유지 / WB 고정","tasks":["확인"]},{"id":"d1-5","no":5,"time":"15:45~16:10","block":"현장 세팅","name":"사진 노출 기준 세팅","fmt":"테스트","frame":"LED 화면 스캔라인 없는 셔터 확인","gear":"A7V","mv":"고정","len":"3컷","pri":"★★★","chk":"E","note":"사진도 1/60~1/125 이내 유지 / RAW+JPEG","tasks":["확인"]},{"id":"d1-6","no":6,"time":"16:10~16:40","block":"공간 HERO","name":"팝업 전체 정면 HERO","fmt":"영상+사진","frame":"정면 와이드, 수평, 전광판+바닥+굿즈존 한 프레임","gear":"A7V 삼각대","mv":"고정","len":"20s / 5컷","pri":"★★★","chk":"A","note":"사람 없는 상태 필수 / 같은 삼각대 위치에서 영상→사진 연속","tasks":["영상","사진"]},{"id":"d1-7","no":7,"time":"16:10~16:40","block":"공간 HERO","name":"입구에서 보이는 전체 공간","fmt":"영상+사진","frame":"입구 시점 와이드, 눈높이","gear":"A7V 삼각대","mv":"고정","len":"15s / 3컷","pri":"★★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d1-8","no":8,"time":"16:10~16:40","block":"공간 HERO","name":"좌 / 중앙 / 우 공간","fmt":"영상+사진","frame":"각 벽면·LED 포함 와이드 3컷","gear":"A7V 삼각대","mv":"고정","len":"10s×3 / 9컷","pri":"★★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d1-9","no":9,"time":"16:10~16:40","block":"공간 HERO","name":"XR존 전체 + 바닥","fmt":"영상+사진","frame":"약간 하이앵글, 바닥 LED까지 포함","gear":"A7V 삼각대","mv":"고정","len":"15s / 3컷","pri":"★★★","chk":"A","note":"바닥 LED 노출 별도 확인","tasks":["영상","사진"]},{"id":"d1-10","no":10,"time":"16:10~16:40","block":"공간 HERO","name":"굿즈존 / 포토존 전체","fmt":"영상+사진","frame":"각 정면 와이드","gear":"A7V 삼각대","mv":"고정","len":"10s×2 / 6컷","pri":"★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d1-11","no":11,"time":"16:10~16:40","block":"공간 HERO","name":"세로 HERO 스틸 (SNS용)","fmt":"사진","frame":"9:16·4:5 세로 구도, 공간 전체","gear":"A7V 삼각대","mv":"—","len":"8컷","pri":"★★★","chk":"E","note":"가로 컷 크롭 말고 세로로 새로 구성","tasks":["사진"]},{"id":"d1-12","no":12,"time":"16:10~16:40","block":"공간 HERO","name":"공간 연결 무빙 (여유 시)","fmt":"영상","frame":"입구→XR존 Push-in, 천천히","gear":"A7V + RS4","mv":"무빙","len":"20s","pri":"★★","chk":"D","note":"HERO 고정컷 다 확보한 뒤에만","tasks":["영상"]},{"id":"d1-13","no":13,"time":"16:40~17:20","block":"전광판/콘텐츠","name":"전체 LED 풀 콘텐츠 1회 완주","fmt":"영상","frame":"벽+바닥 전체 와이드, 시작~끝 통으로","gear":"A7V 삼각대","mv":"고정","len":"콘텐츠 1루프","pri":"★★★","chk":"B","note":"최우선. 중간에 끊지 않음 / ND로 노출","tasks":["영상"]},{"id":"d1-14","no":14,"time":"16:40~17:20","block":"전광판/콘텐츠","name":"Front 화면 단독","fmt":"영상+사진","frame":"정면 화면 꽉 채운 미디엄","gear":"A7V 삼각대","mv":"고정","len":"1루프 / 3컷","pri":"★★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d1-15","no":15,"time":"16:40~17:20","block":"전광판/콘텐츠","name":"Left 화면 단독","fmt":"영상+사진","frame":"좌측 화면 꽉 채움","gear":"A7V 삼각대","mv":"고정","len":"1루프 / 3컷","pri":"★★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d1-16","no":16,"time":"16:40~17:20","block":"전광판/콘텐츠","name":"Right 화면 단독","fmt":"영상+사진","frame":"우측 화면 꽉 채움","gear":"A7V 삼각대","mv":"고정","len":"1루프 / 3컷","pri":"★★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d1-17","no":17,"time":"16:40~17:20","block":"전광판/콘텐츠","name":"Floor 화면 단독","fmt":"영상+사진","frame":"바닥 LED 하이앵글","gear":"A7V 삼각대","mv":"고정","len":"1루프 / 3컷","pri":"★★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d1-18","no":18,"time":"16:40~17:20","block":"전광판/콘텐츠","name":"벽+바닥 동시 와이드","fmt":"영상+사진","frame":"3면 벽+바닥 동시 (초광각)","gear":"A7V 삼각대","mv":"고정","len":"30s / 5컷","pri":"★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d1-19","no":19,"time":"16:40~17:20","block":"전광판/콘텐츠","name":"콘텐츠 주요 장면 스틸","fmt":"사진","frame":"콘텐츠 하이라이트 3~4장면 정지컷","gear":"A7V 삼각대","mv":"—","len":"10컷","pri":"★★★","chk":"E","note":"루프 돌 때 장면별로 끊어서","tasks":["사진"]},{"id":"d1-20","no":20,"time":"16:40~17:20","block":"전광판/콘텐츠","name":"콘텐츠 전환 장면 / LCD·광고","fmt":"영상+사진","frame":"전환 타이밍 미디엄 + LCD 광고 클로즈업","gear":"A7V 삼각대","mv":"고정","len":"15s / 4컷","pri":"★★","chk":"B","note":"전환 포인트 미리 파악","tasks":["영상","사진"]},{"id":"d1-21","no":21,"time":"17:20~18:15","block":"체험 메인","name":"2인 입장 / 시작","fmt":"영상","frame":"입구→XR존 진입, 뒤에서 팔로우","gear":"A7V + RS4","mv":"무빙","len":"15s","pri":"★★★","chk":"C","note":"체험자 2인 사전 섭외","tasks":["영상"]},{"id":"d1-22","no":22,"time":"17:20~18:15","block":"체험 메인","name":"2인 플레이 와이드 (대표 체험컷)","fmt":"영상+사진","frame":"공간+전광판+사람 전부 보이는 와이드","gear":"A7V 삼각대","mv":"고정","len":"30s / 10컷","pri":"★★★","chk":"C","note":"핵심 대표컷. 사진은 연사로 결정적 순간","tasks":["영상","사진"]},{"id":"d1-23","no":23,"time":"17:20~18:15","block":"체험 메인","name":"발 인터랙션 / 화면 터치","fmt":"영상+사진","frame":"로우앵글 발, 손+화면 미디엄","gear":"A7V + RS4","mv":"무빙","len":"10s×2 / 6컷","pri":"★★★","chk":"C","note":"","tasks":["영상","사진"]},{"id":"d1-24","no":24,"time":"17:20~18:15","block":"체험 메인","name":"뒤에서 보는 체험 장면","fmt":"영상+사진","frame":"체험자 뒷모습 + 전광판 풀샷","gear":"A7V 삼각대","mv":"고정","len":"20s / 8컷","pri":"★★★","chk":"C","note":"얼굴 노출 부담 없는 컷 — 홍보물 활용도 최고","tasks":["영상","사진"]},{"id":"d1-25","no":25,"time":"17:20~18:15","block":"체험 메인","name":"측면 / 리액션","fmt":"영상+사진","frame":"측면 미디엄, 표정·환호 클로즈업","gear":"A7V + RS4","mv":"무빙","len":"15s / 10컷","pri":"★★","chk":"C","note":"초상권 동의 확인","tasks":["영상","사진"]},{"id":"d1-26","no":26,"time":"17:20~18:15","block":"체험 메인","name":"파이널 포즈 / 결과 화면","fmt":"영상+사진","frame":"파이널 포즈 풀샷 → 결과 화면 클로즈업","gear":"A7V 삼각대","mv":"고정","len":"15s / 6컷","pri":"★★★","chk":"C","note":"","tasks":["영상","사진"]},{"id":"d1-27","no":27,"time":"17:20~18:15","block":"체험 메인","name":"세로 체험 스틸 (SNS용)","fmt":"사진","frame":"9:16 세로, 인물+전광판","gear":"A7V","mv":"—","len":"10컷","pri":"★★★","chk":"E","note":"","tasks":["사진"]},{"id":"d1-28","no":28,"time":"18:15~18:45","block":"POV/디테일","name":"Insta360 POV 체험 1회 완주","fmt":"영상","frame":"체험자 시점, 입장~결과까지","gear":"Insta360","mv":"무빙","len":"체험 1회","pri":"★★","chk":"D","note":"메인카메라 컷 확보 후","tasks":["영상"]},{"id":"d1-29","no":29,"time":"18:15~18:45","block":"POV/디테일","name":"손 / 발 클로즈업","fmt":"영상+사진","frame":"터치 순간, 바닥 인터랙션 클로즈업","gear":"A7V 핸드헬드","mv":"고정","len":"10s×2 / 6컷","pri":"★★","chk":"C","note":"","tasks":["영상","사진"]},{"id":"d1-30","no":30,"time":"18:15~18:45","block":"POV/디테일","name":"UI 화면 디테일","fmt":"영상+사진","frame":"게임 UI·안내 화면 클로즈업","gear":"A7V 핸드헬드","mv":"고정","len":"10s / 4컷","pri":"★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d1-31","no":31,"time":"18:45~19:15","block":"굿즈/포토존","name":"굿즈존 HERO","fmt":"영상+사진","frame":"굿즈 진열 전체 정면","gear":"A7V 삼각대","mv":"고정","len":"10s / 5컷","pri":"★★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d1-32","no":32,"time":"18:45~19:15","block":"굿즈/포토존","name":"상품 대표컷 (제품 사진)","fmt":"사진","frame":"정면 + 45도, 상품 2~3종, 배경 정돈","gear":"A7V 핸드헬드","mv":"—","len":"12컷","pri":"★★★","chk":"E","note":"상품별 반복 금지 — 대표만. 얕은 심도","tasks":["사진"]},{"id":"d1-33","no":33,"time":"18:45~19:15","block":"굿즈/포토존","name":"굿즈 집는 손","fmt":"영상+사진","frame":"손이 상품 집는 클로즈업","gear":"A7V 핸드헬드","mv":"고정","len":"10s / 4컷","pri":"★★","chk":"D","note":"","tasks":["영상","사진"]},{"id":"d1-34","no":34,"time":"18:45~19:15","block":"굿즈/포토존","name":"포토존 + 촬영 장면","fmt":"영상+사진","frame":"포토존 전체 → 관람객 촬영 모습","gear":"A7V + RS4","mv":"무빙","len":"15s / 5컷","pri":"★★","chk":"D","note":"","tasks":["영상","사진"]},{"id":"d1-35","no":35,"time":"18:45~19:15","block":"굿즈/포토존","name":"NFC / 감정평가서","fmt":"영상+사진","frame":"NFC 태깅 동작 + 감정평가서 클로즈업","gear":"A7V 핸드헬드","mv":"고정","len":"10s×2 / 6컷","pri":"★★★","chk":"A","note":"흰디 전용 — 철거 후 재촬영 불가","tasks":["영상","사진"]},{"id":"d1-36","no":36,"time":"18:45~19:15","block":"굿즈/포토존","name":"로고 / 사인 디테일","fmt":"사진","frame":"로고·사인 클로즈업, 얕은 심도","gear":"A7V 핸드헬드","mv":"—","len":"5컷","pri":"★★","chk":"D","note":"","tasks":["사진"]},{"id":"d1-37","no":37,"time":"19:15~19:35","block":"현장감","name":"관람객 흐름 와이드","fmt":"영상+사진","frame":"공간 전체 + 사람 흐름","gear":"A7V 삼각대","mv":"고정","len":"30s / 8컷","pri":"★★★","chk":"A","note":"운영 분위기 증빙","tasks":["영상","사진"]},{"id":"d1-38","no":38,"time":"19:15~19:35","block":"현장감","name":"전광판을 보는 사람 / 좌우 트래킹","fmt":"영상","frame":"관람객 뒷모습+전광판, 트래킹 무빙","gear":"A7V + RS4","mv":"무빙","len":"15s+20s","pri":"★★","chk":"D","note":"","tasks":["영상"]},{"id":"d1-39","no":39,"time":"19:15~19:35","block":"현장감","name":"사과당 / 매트블랙","fmt":"영상+사진","frame":"각 1컷씩","gear":"A7V 핸드헬드","mv":"고정","len":"10s×2 / 4컷","pri":"★★","chk":"D","note":"체크리스트 D 항목","tasks":["영상","사진"]},{"id":"d1-40","no":40,"time":"19:35~19:50","block":"외부 전광판 (야간)","name":"외부 전광판 정면 와이드 — 야간","fmt":"영상+사진","frame":"해 진 뒤 점등 상태, 정면 와이드","gear":"A7V 삼각대","mv":"고정","len":"20s / 10컷","pri":"★★★","chk":"E","note":"9/16 일몰 약 18:35 — 이 시간대 아니면 야간 버전 없음","tasks":["영상","사진"]},{"id":"d1-41","no":41,"time":"19:35~19:50","block":"외부 전광판 (야간)","name":"외부 전광판 콘텐츠 풀루프 — 야간","fmt":"영상","frame":"화면 꽉 채운 미디엄, 통으로","gear":"A7V 삼각대","mv":"고정","len":"콘텐츠 1루프","pri":"★★★","chk":"E","note":"야간은 노출 오버 주의 — 화면 기준 측광","tasks":["영상"]},{"id":"d1-42","no":42,"time":"19:35~19:50","block":"외부 전광판 (야간)","name":"야간 건물 + 행인 컨텍스트","fmt":"영상+사진","frame":"로우앵글, 거리 조명+행인 흐름","gear":"A7V 핸드헬드","mv":"고정","len":"15s / 5컷","pri":"★★","chk":"E","note":"가로/세로 둘 다","tasks":["영상","사진"]},{"id":"d1-43","no":43,"time":"19:50~20:00","block":"누락 회수","name":"체크리스트 A~E 대조 후 누락만","fmt":"—","frame":"—","gear":"—","mv":"—","len":"—","pri":"★★★","chk":"전체","note":"새 연출 금지 / 사진 누락도 함께 확인","tasks":["완료"]},{"id":"d1-44","no":44,"time":"20:00~20:40","block":"철거/전환","name":"흰디 철거 메이킹","fmt":"영상+사진","frame":"철거 시작 와이드 → 진행 타임랩스","gear":"A7V 삼각대","mv":"고정/타임랩스","len":"인터벌 / 10컷","pri":"★★","chk":"—","note":"완성 상태 기대하지 않음","tasks":["영상","사진"]},{"id":"d1-45","no":45,"time":"20:00~20:40","block":"철거/전환","name":"도배·브레드 전환 과정","fmt":"영상+사진","frame":"작업자 손·벽면 변화 미디엄","gear":"A7V 핸드헬드","mv":"고정","len":"10s×N / 10컷","pri":"★","chk":"—","note":"","tasks":["영상","사진"]}],"day2":[{"id":"d2-1","no":1,"time":"08:20~08:35","block":"외부 전광판 (오전)","name":"외부 전광판 정면 와이드 — 오전","fmt":"영상+사진","frame":"아침 자연광, 정면 와이드, 하늘 포함","gear":"A7V 삼각대","mv":"고정","len":"20s / 10컷","pri":"★★★","chk":"E","note":"오전 버전. DAY1 오후 컷과 같은 위치·같은 화각으로 맞출 것","tasks":["영상","사진"]},{"id":"d2-2","no":2,"time":"08:20~08:35","block":"외부 전광판 (오전)","name":"외부 전광판 콘텐츠 풀루프 — 오전","fmt":"영상","frame":"화면 꽉 채운 미디엄, 통으로","gear":"A7V 삼각대","mv":"고정","len":"콘텐츠 1루프","pri":"★★★","chk":"E","note":"브레드 콘텐츠로 교체됐는지 확인","tasks":["영상"]},{"id":"d2-3","no":3,"time":"08:20~08:35","block":"외부 전광판 (오전)","name":"건물 + 전광판 컨텍스트 — 오전","fmt":"영상+사진","frame":"길 건너 로우앵글, 출근 시간 행인","gear":"A7V 핸드헬드","mv":"고정","len":"15s / 5컷","pri":"★★","chk":"E","note":"가로/세로 둘 다","tasks":["영상","사진"]},{"id":"d2-4","no":4,"time":"08:35~09:05","block":"장비 세팅","name":"전날 설정 복원 / 배터리 확인","fmt":"—","frame":"셔터·WB·픽처프로파일 복원","gear":"—","mv":"—","len":"—","pri":"★★★","chk":"—","note":"영상 셔터값, 사진 RAW+JPEG 설정 확인","tasks":["완료"]},{"id":"d2-5","no":5,"time":"09:05~09:30","block":"공간 정리/테스트","name":"LED 노출·플리커·WB 테스트","fmt":"테스트","frame":"전날 셔터값 복원 확인 + 사진 스캔라인 확인","gear":"A7V 삼각대","mv":"고정","len":"10s / 3컷","pri":"★★★","chk":"B","note":"관계자 이동 전 구도 확정","tasks":["확인"]},{"id":"d2-6","no":6,"time":"09:30~10:10","block":"공간 HERO","name":"브레드 정면 와이드 HERO","fmt":"영상+사진","frame":"정면 와이드, 전광판+바닥+굿즈존 한 프레임","gear":"A7V 삼각대","mv":"고정","len":"20s / 5컷","pri":"★★★","chk":"A","note":"사람 없는 상태 최우선 — 09:30~10:40 동선 비우기 요청","tasks":["영상","사진"]},{"id":"d2-7","no":7,"time":"09:30~10:10","block":"공간 HERO","name":"입구 → 메인 시점","fmt":"영상+사진","frame":"입구 눈높이 와이드","gear":"A7V 삼각대","mv":"고정","len":"15s / 3컷","pri":"★★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d2-8","no":8,"time":"09:30~10:10","block":"공간 HERO","name":"좌 / 중앙 / 우 공간","fmt":"영상+사진","frame":"각 벽면·LED 와이드 3컷","gear":"A7V 삼각대","mv":"고정","len":"10s×3 / 9컷","pri":"★★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d2-9","no":9,"time":"09:30~10:10","block":"공간 HERO","name":"XR존 전체 + 바닥","fmt":"영상+사진","frame":"하이앵글 바닥 포함","gear":"A7V 삼각대","mv":"고정","len":"15s / 3컷","pri":"★★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d2-10","no":10,"time":"09:30~10:10","block":"공간 HERO","name":"굿즈존 / 포토존 전체","fmt":"영상+사진","frame":"각 정면 와이드","gear":"A7V 삼각대","mv":"고정","len":"10s×2 / 6컷","pri":"★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d2-11","no":11,"time":"09:30~10:10","block":"공간 HERO","name":"세로 HERO 스틸 (SNS용)","fmt":"사진","frame":"9:16·4:5 세로 구도, 공간 전체","gear":"A7V 삼각대","mv":"—","len":"8컷","pri":"★★★","chk":"E","note":"사람 없을 때만 가능 — 이 타임에 반드시","tasks":["사진"]},{"id":"d2-12","no":12,"time":"10:10~10:45","block":"짐벌 무빙","name":"입구 접근 Push-in","fmt":"영상","frame":"입구 밖→XR존까지 천천히 전진","gear":"A7V + RS4","mv":"무빙","len":"20s","pri":"★★★","chk":"D","note":"브레드 대표 마케팅 영상 오프닝용","tasks":["영상"]},{"id":"d2-13","no":13,"time":"10:10~10:45","block":"짐벌 무빙","name":"공간 좌우 트래킹","fmt":"영상","frame":"전광판 정면 유지하며 좌→우","gear":"A7V + RS4","mv":"무빙","len":"20s","pri":"★★★","chk":"D","note":"왕복 2회","tasks":["영상"]},{"id":"d2-14","no":14,"time":"10:10~10:45","block":"짐벌 무빙","name":"입구 → 체험존 연결 무빙","fmt":"영상","frame":"입구→굿즈존→XR존 원테이크","gear":"A7V + RS4","mv":"무빙","len":"30s","pri":"★★★","chk":"D","note":"","tasks":["영상"]},{"id":"d2-15","no":15,"time":"10:10~10:45","block":"짐벌 무빙","name":"로우앵글 바닥 리빌","fmt":"영상","frame":"바닥 LED에서 틸트업해 벽면까지","gear":"A7V + RS4","mv":"무빙","len":"15s","pri":"★★","chk":"D","note":"","tasks":["영상"]},{"id":"d2-16","no":16,"time":"10:45~11:20","block":"전광판/풀 콘텐츠","name":"전체 LED 풀 콘텐츠 1회 완주","fmt":"영상","frame":"벽+바닥 와이드, 시작~끝 통으로","gear":"A7V 삼각대","mv":"고정","len":"콘텐츠 1루프","pri":"★★★","chk":"B","note":"최우선","tasks":["영상"]},{"id":"d2-17","no":17,"time":"10:45~11:20","block":"전광판/풀 콘텐츠","name":"Front 화면 단독","fmt":"영상+사진","frame":"정면 화면 꽉 채움","gear":"A7V 삼각대","mv":"고정","len":"1루프 / 3컷","pri":"★★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d2-18","no":18,"time":"10:45~11:20","block":"전광판/풀 콘텐츠","name":"Side (좌/우) 화면 단독","fmt":"영상+사진","frame":"좌·우 각각","gear":"A7V 삼각대","mv":"고정","len":"1루프×2 / 6컷","pri":"★★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d2-19","no":19,"time":"10:45~11:20","block":"전광판/풀 콘텐츠","name":"Floor 화면 단독","fmt":"영상+사진","frame":"바닥 하이앵글","gear":"A7V 삼각대","mv":"고정","len":"1루프 / 3컷","pri":"★★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d2-20","no":20,"time":"10:45~11:20","block":"전광판/풀 콘텐츠","name":"화면 + 공간 동시 와이드","fmt":"영상+사진","frame":"3면+바닥 초광각","gear":"A7V 삼각대","mv":"고정","len":"30s / 5컷","pri":"★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d2-21","no":21,"time":"10:45~11:20","block":"전광판/풀 콘텐츠","name":"콘텐츠 주요 장면 스틸","fmt":"사진","frame":"콘텐츠 하이라이트 3~4장면 정지컷","gear":"A7V 삼각대","mv":"—","len":"10컷","pri":"★★★","chk":"E","note":"","tasks":["사진"]},{"id":"d2-22","no":22,"time":"10:45~11:20","block":"전광판/풀 콘텐츠","name":"콘텐츠 전환 / LCD·광고","fmt":"영상+사진","frame":"전환 장면 + LCD 광고","gear":"A7V 삼각대","mv":"고정","len":"10s×2 / 4컷","pri":"★★","chk":"B","note":"","tasks":["영상","사진"]},{"id":"d2-23","no":23,"time":"11:20~12:00","block":"체험 메인","name":"2인 입장 / 시작","fmt":"영상","frame":"뒤에서 팔로우","gear":"A7V + RS4","mv":"무빙","len":"15s","pri":"★★★","chk":"C","note":"관계자 많으면 프레임 좁혀 운영감 활용","tasks":["영상"]},{"id":"d2-24","no":24,"time":"11:20~12:00","block":"체험 메인","name":"2인 플레이 와이드 (대표 체험컷)","fmt":"영상+사진","frame":"공간+전광판+사람","gear":"A7V 삼각대","mv":"고정","len":"30s / 10컷","pri":"★★★","chk":"C","note":"사진은 연사로 결정적 순간","tasks":["영상","사진"]},{"id":"d2-25","no":25,"time":"11:20~12:00","block":"체험 메인","name":"발 인터랙션 / 화면 터치","fmt":"영상+사진","frame":"로우앵글 발, 손+화면 미디엄","gear":"A7V + RS4","mv":"무빙","len":"10s×2 / 6컷","pri":"★★★","chk":"C","note":"","tasks":["영상","사진"]},{"id":"d2-26","no":26,"time":"11:20~12:00","block":"체험 메인","name":"뒷모습 / 측면","fmt":"영상+사진","frame":"뒷모습 풀샷, 측면 미디엄","gear":"A7V 삼각대","mv":"고정","len":"15s×2 / 8컷","pri":"★★★","chk":"C","note":"","tasks":["영상","사진"]},{"id":"d2-27","no":27,"time":"11:20~12:00","block":"체험 메인","name":"리액션","fmt":"영상+사진","frame":"표정·환호 미디엄 클로즈업","gear":"A7V + RS4","mv":"무빙","len":"10s / 10컷","pri":"★★","chk":"C","note":"초상권 동의 확인","tasks":["영상","사진"]},{"id":"d2-28","no":28,"time":"11:20~12:00","block":"체험 메인","name":"파이널 장면 / 결과 화면","fmt":"영상+사진","frame":"파이널 풀샷 → 결과 화면 클로즈업","gear":"A7V 삼각대","mv":"고정","len":"15s / 6컷","pri":"★★★","chk":"C","note":"","tasks":["영상","사진"]},{"id":"d2-29","no":29,"time":"11:20~12:00","block":"체험 메인","name":"손 / 발 클로즈업","fmt":"영상+사진","frame":"터치·스텝 클로즈업","gear":"A7V 핸드헬드","mv":"고정","len":"10s×2 / 6컷","pri":"★★","chk":"C","note":"","tasks":["영상","사진"]},{"id":"d2-30","no":30,"time":"11:20~12:00","block":"체험 메인","name":"세로 체험 스틸 (SNS용)","fmt":"사진","frame":"9:16 세로, 인물+전광판","gear":"A7V","mv":"—","len":"10컷","pri":"★★★","chk":"E","note":"","tasks":["사진"]},{"id":"d2-31","no":31,"time":"11:20~12:00","block":"체험 메인","name":"Insta360 POV","fmt":"영상","frame":"체험자 시점 1회 완주","gear":"Insta360","mv":"무빙","len":"체험 1회","pri":"★★","chk":"D","note":"메인 컷 확보 후","tasks":["영상"]},{"id":"d2-32","no":32,"time":"12:00~12:25","block":"굿즈/포토존","name":"굿즈존 HERO / 포토존 HERO","fmt":"영상+사진","frame":"각 정면 와이드","gear":"A7V 삼각대","mv":"고정","len":"10s×2 / 8컷","pri":"★★★","chk":"A","note":"","tasks":["영상","사진"]},{"id":"d2-33","no":33,"time":"12:00~12:25","block":"굿즈/포토존","name":"대표 상품 클로즈업 (제품 사진)","fmt":"사진","frame":"정면 + 45도, 2~3종, 배경 정돈","gear":"A7V 핸드헬드","mv":"—","len":"12컷","pri":"★★★","chk":"E","note":"대표컷 중심으로 빠르게","tasks":["사진"]},{"id":"d2-34","no":34,"time":"12:00~12:25","block":"굿즈/포토존","name":"로고 / 사인 디테일","fmt":"사진","frame":"얕은 심도 클로즈업","gear":"A7V 핸드헬드","mv":"—","len":"5컷","pri":"★★","chk":"D","note":"","tasks":["사진"]},{"id":"d2-35","no":35,"time":"12:00~12:25","block":"굿즈/포토존","name":"굿즈 집는 손 / 포토존 촬영 장면","fmt":"영상+사진","frame":"손 클로즈업, 촬영 장면 미디엄","gear":"A7V + RS4","mv":"무빙","len":"10s×2 / 5컷","pri":"★★","chk":"D","note":"","tasks":["영상","사진"]},{"id":"d2-36","no":36,"time":"12:25~12:50","block":"분위기/B-roll","name":"사람 흐름 와이드","fmt":"영상+사진","frame":"공간 전체 + 사람 흐름 (운영 분위기)","gear":"A7V 삼각대","mv":"고정","len":"30s / 8컷","pri":"★★★","chk":"A","note":"관계자 많을 때 자연스러운 현장감으로 활용","tasks":["영상","사진"]},{"id":"d2-37","no":37,"time":"12:25~12:50","block":"분위기/B-roll","name":"전광판 바라보는 사람","fmt":"영상+사진","frame":"뒷모습 + 전광판","gear":"A7V + RS4","mv":"무빙","len":"15s / 5컷","pri":"★★","chk":"D","note":"","tasks":["영상","사진"]},{"id":"d2-38","no":38,"time":"12:25~12:50","block":"분위기/B-roll","name":"손 디테일 / 운영감","fmt":"영상+사진","frame":"안내·응대·굿즈 손 디테일","gear":"A7V 핸드헬드","mv":"고정","len":"10s×N / 8컷","pri":"★★","chk":"D","note":"","tasks":["영상","사진"]},{"id":"d2-39","no":39,"time":"12:25~12:50","block":"분위기/B-roll","name":"사과당 / 매트블랙","fmt":"영상+사진","frame":"각 1컷","gear":"A7V 핸드헬드","mv":"고정","len":"10s×2 / 4컷","pri":"★★","chk":"D","note":"","tasks":["영상","사진"]},{"id":"d2-40","no":40,"time":"12:50~13:05","block":"누락 체크","name":"체크리스트 A~E 대조 후 누락만","fmt":"—","frame":"핸드폰 보충 가능 컷과 구분","gear":"—","mv":"—","len":"—","pri":"★★★","chk":"전체","note":"안내물·사인·세부 상품은 반납 후 핸드폰 보충","tasks":["완료"]},{"id":"d2-41","no":41,"time":"13:05~13:25","block":"패킹","name":"장비 수량·메모리 분리","fmt":"—","frame":"—","gear":"—","mv":"—","len":"—","pri":"★★★","chk":"—","note":"13:25 출발 목표","tasks":["완료"]},{"id":"d2-42","no":42,"time":"13:25~14:05","block":"이동","name":"신촌 → 합정 SLR렌트","fmt":"—","frame":"—","gear":"—","mv":"—","len":"—","pri":"★★★","chk":"—","note":"교통 변수 포함 40분 버퍼","tasks":["완료"]},{"id":"d2-43","no":43,"time":"14:05~14:30","block":"반납","name":"장비 검사 및 반납","fmt":"—","frame":"—","gear":"—","mv":"—","len":"—","pri":"★★★","chk":"—","note":"14:30 대여 종료","tasks":["완료"]}],"chk":{"A. 공간 / 증빙":["행사장 전체 정면 HERO","입구에서 보이는 전체 공간","좌 / 중앙 / 우 공간","XR존 전체 + 바닥 포함","굿즈존 전체","포토존 전체","사람 없는 완성 공간","사람 있는 운영 분위기"],"B. 전광판 / 콘텐츠":["전체 화면 풀 콘텐츠 1회 완주","Front 화면","Left 화면","Right 화면","Floor 화면","벽+바닥 동시 와이드","콘텐츠 전환 장면","LCD 전체 / 광고 클로즈업"],"C. 체험":["2인 입장 / 시작","발 인터랙션","화면 터치","2인 플레이 와이드","손 / 발 클로즈업","뒤에서 보는 체험 장면","성공 / 리액션","파이널 포즈 / 결과 화면"],"D. 마케팅 B-roll":["입구 접근 Push-in","공간 좌우 트래킹","전광판을 보는 사람","로고 / 사인 디테일","굿즈 집는 손","포토존 촬영 장면","Insta360 POV","공간 속 사람 흐름","사과당 촬영","매트블랙 촬영"],"E. 사진 전용":["세로(9:16·4:5) 공간 HERO 스틸","세로 체험 스틸","콘텐츠 주요 장면 스틸","제품 대표 스틸 (정면+45도)","로고 / 사인 스틸","리액션 연사 스틸","RAW+JPEG 설정 확인"],"F. 외부 전광판":["오전 정면 와이드 (DAY2 08:20)","오전 콘텐츠 풀루프","오후 정면 와이드 (DAY1 15:30)","오후 콘텐츠 풀루프","야간 정면 와이드 (DAY1 19:35)","야간 콘텐츠 풀루프","건물+행인 컨텍스트 (시간대별)","세 버전 화각·위치 동일 여부 확인"]}};
 var LS = 'shotlist20260916';
-var API = 'https://jsonblob.com/api/jsonBlob';
-var state = {};           /* key -> {v:1|0, t:ms, by:name} */
-var room = null, me = '', dirty = false, online = false, pulling = false, pushTimer = null;
+var state = {};            /* key -> {v:1|0, t:ms, by:name} */
+var be = null;             /* {type:'firebase',base,room} | {type:'jsonblob',id} */
+var me = '', lastErr = '', es = null, pollTimer = null, pulling = false, pushQ = {}, pushTimer = null;
 var tab='day1', filter='all', todoFold=false;
 function $(id){ return document.getElementById(id); }
 function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
 function hhmm(){ var d=new Date(); return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }
 
+/* ---------- key encoding (Firebase-safe) ---------- */
+function encKey(k){
+  var b = btoa(unescape(encodeURIComponent(k)));
+  return b.replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'');
+}
+var ENC = {}, DEC = {};
+(function(){
+  ['day1','day2'].forEach(function(d){ DATA[d].forEach(function(s){ s.tasks.forEach(function(t){
+    var k0 = s.id+'::'+t; ENC[k0]=encKey(k0); DEC[ENC[k0]]=k0; }); }); });
+  Object.keys(DATA.chk).forEach(function(sec){ DATA.chk[sec].forEach(function(it){
+    ['d1v','d1p','d2v','d2p'].forEach(function(c){
+      var k0='ck::'+sec+'|'+it+'::'+c; ENC[k0]=encKey(k0); DEC[ENC[k0]]=k0; }); }); });
+})();
+
 /* ---------- local mirror ---------- */
-function saveLocal(){ try{ localStorage.setItem(LS, JSON.stringify({room:room,me:me,state:state})); }catch(e){} }
-function loadLocal(){
-  try{ var r=JSON.parse(localStorage.getItem(LS)||'{}');
-    if(r.state) state=r.state; if(r.room) room=r.room; if(r.me) me=r.me; }catch(e){}
-}
-/* ---------- merge ---------- */
+function saveLocal(){ try{ localStorage.setItem(LS, JSON.stringify({be:be,me:me,state:state})); }catch(e){} }
+function loadLocal(){ try{ var r=JSON.parse(localStorage.getItem(LS)||'{}');
+  if(r.state) state=r.state; if(r.be) be=r.be; if(r.me) me=r.me; }catch(e){} }
+
 function mergeIn(remote){
-  var changed=false;
-  for(var key in remote){ if(!remote.hasOwnProperty(key)) continue;
-    var r=remote[key], l=state[key];
-    if(!l || (r.t||0) > (l.t||0)){ state[key]=r; changed=true; }
+  var ch=false;
+  for(var ek in remote){ if(!remote.hasOwnProperty(ek)) continue;
+    var key = DEC[ek] || ek, r = remote[ek], l = state[key];
+    if(!r || typeof r!=='object') continue;
+    if(!l || (r.t||0) > (l.t||0)){ state[key]=r; ch=true; }
   }
-  return changed;
+  return ch;
 }
-/* ---------- sync ---------- */
 function pill(txt, cls){ var p=$('syncPill'); p.textContent=txt; p.className='sync '+(cls||''); }
+
+/* ---------- backend ---------- */
+function fbUrl(){ return be.base.replace(/\/+$/,'') + '/shotlist/' + be.room + '/entries.json'; }
+function jbUrl(){ return 'https://jsonblob.com/api/jsonBlob/' + be.id; }
+
 function pull(){
-  if(!room || pulling) return Promise.resolve();
-  pulling=true;
-  return fetch(API+'/'+room, {headers:{'Accept':'application/json'}, cache:'no-store'})
-    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+  if(!be || pulling) return Promise.resolve();
+  pulling = true;
+  var url = be.type==='firebase' ? fbUrl()+'?nocache='+Date.now() : jbUrl();
+  return fetch(url, {cache:'no-store'})
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
     .then(function(doc){
-      pulling=false; online=true;
-      var ch = mergeIn(doc.entries||{});
-      pill('동기화 '+hhmm(), 'on');
-      if(ch) render(true);
-      if(dirty) push();
-      saveLocal();
+      pulling=false; lastErr='';
+      var entries = be.type==='firebase' ? (doc||{}) : ((doc&&doc.entries)||{});
+      if(mergeIn(entries)) render(true);
+      saveLocal(); pill('연결됨 '+hhmm(),'on');
     })
-    .catch(function(){ pulling=false; online=false; pill('오프라인 · 이 기기에만 저장','off'); });
+    .catch(function(e){ pulling=false; lastErr=String(e&&e.message||e);
+      pill('오프라인 · 이 기기에만 저장','off'); });
 }
-function push(){
-  if(!room) return;
+function queuePush(key){
+  if(!be) return;
+  pushQ[key]=1;
   if(pushTimer) clearTimeout(pushTimer);
-  pushTimer = setTimeout(function(){
-    fetch(API+'/'+room, {method:'PUT', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({v:1, updated:Date.now(), entries:state})})
-      .then(function(r){ if(!r.ok) throw new Error(r.status);
-        dirty=false; online=true; pill('동기화 '+hhmm(),'on'); })
-      .catch(function(){ dirty=true; online=false; pill('오프라인 · 이 기기에만 저장','off'); });
-  }, 500);
+  pushTimer = setTimeout(doPush, 400);
 }
-function createRoom(){
-  pill('방 만드는 중…','');
-  return fetch(API, {method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body: JSON.stringify({v:1, updated:Date.now(), entries:state})})
-   .then(function(r){
-      var loc = r.headers.get('Location') || r.headers.get('location') || r.headers.get('X-jsonblob');
-      if(!loc) throw new Error('no-location');
-      room = String(loc).split('/').pop();
-      location.hash = 'room=' + room;
-      saveLocal(); pill('동기화 '+hhmm(),'on'); online=true;
-      return room;
-   });
+function doPush(){
+  if(!be) return;
+  if(be.type==='firebase'){
+    var body={}; Object.keys(pushQ).forEach(function(k0){ body[ENC[k0]||encKey(k0)] = state[k0]; });
+    pushQ={};
+    fetch(fbUrl(), {method:'PATCH', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)})
+      .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); lastErr=''; pill('연결됨 '+hhmm(),'on'); })
+      .catch(function(e){ lastErr=String(e&&e.message||e); pill('오프라인 · 이 기기에만 저장','off'); });
+  } else {
+    pushQ={};
+    pull().then(function(){
+      var out={}; Object.keys(state).forEach(function(k0){ out[ENC[k0]||encKey(k0)]=state[k0]; });
+      return fetch(jbUrl(), {method:'PUT', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({v:1, updated:Date.now(), entries:out})});
+    }).then(function(r){ if(r&&!r.ok) throw new Error('HTTP '+r.status); lastErr=''; pill('연결됨 '+hhmm(),'on'); })
+      .catch(function(e){ lastErr=String(e&&e.message||e); pill('오프라인 · 이 기기에만 저장','off'); });
+  }
+}
+function stopSync(){ if(es){ try{es.close();}catch(e){} es=null; } if(pollTimer){ clearInterval(pollTimer); pollTimer=null; } }
+function startSync(){
+  stopSync(); if(!be) { pill('개인 모드 · 공유하려면 탭',''); return; }
+  pill('연결 중…','');
+  pull();
+  if(be.type==='firebase' && window.EventSource){
+    try{
+      es = new EventSource(fbUrl());
+      es.addEventListener('put', function(ev){ applyStream(ev.data); });
+      es.addEventListener('patch', function(ev){ applyStream(ev.data); });
+      es.onerror = function(){ if(!pollTimer) pollTimer=setInterval(pull, 5000); };
+    }catch(e){ pollTimer=setInterval(pull, 5000); }
+  } else {
+    pollTimer = setInterval(pull, 5000);
+  }
+}
+function applyStream(raw){
+  try{
+    var m=JSON.parse(raw); if(!m) return;
+    var p=m.path||'/', d=m.data, obj={};
+    if(p==='/'){ obj = d || {}; }
+    else { var seg=p.replace(/^\//,'').split('/')[0]; if(!seg) return;
+           if(d && typeof d==='object' && d.t!==undefined) obj[seg]=d; else return; }
+    if(mergeIn(obj)){ saveLocal(); render(true); }
+    lastErr=''; pill('연결됨 '+hhmm(),'on');
+  }catch(e){}
 }
 function setTask(key, val){
   state[key] = {v: val?1:0, t: Date.now(), by: me||''};
-  dirty = true; saveLocal(); push(); render(true);
+  saveLocal(); queuePush(key); render(true);
 }
 /* ---------- data helpers ---------- */
 function k(id,t){ return id+'::'+t; }
@@ -356,7 +400,7 @@ function renderChk(main){
 function render(keep){
   var y=window.scrollY||0;
   renderStats(); renderTodo(); renderNow(); renderMain();
-  $('whoLabel').textContent = (me?'체크 이름: '+me:'이름 미설정') + (room?' · 방 '+room.slice(-6):' · 개인 모드');
+  $('whoLabel').textContent = (me?'체크 이름: '+me:'이름 미설정') + (be?(' · 방 '+be.room||''):' · 개인 모드');
   if(keep) window.scrollTo(0,y);
 }
 /* ---------- modal ---------- */
@@ -371,33 +415,48 @@ function askName(next){
   $('mOk').onclick=function(){ me=($('mName').value||'').trim().slice(0,8); saveLocal(); closeModal(); render(true); if(next) next(); };
 }
 function roomModal(){
-  var url = location.origin + location.pathname + (room?('#room='+room):'');
+  var link = location.origin + location.pathname + (be ? ('#'+beHash()) : '');
+  var cur = be ? (be.type==='firebase' ? 'Firebase · 방 '+be.room : 'jsonblob · '+be.id) : '연결 안 됨 (이 기기에만 저장)';
   modal('<h3>실시간 공유</h3>'+
-   (room ? '<p>아래 주소를 스태프에게 보내면 같은 체크 상태를 함께 봅니다. 5초마다 자동 동기화됩니다.</p>'+
-           '<input id="mUrl" readonly value="'+esc(url)+'">'+
-           '<div class="row"><button class="pri" id="mCopy">주소 복사</button><button id="mLeave">방 나가기</button></div>'
-         : '<p>아직 공유 방이 없습니다. 방을 만들면 주소가 생기고, 그 주소를 연 사람끼리 체크가 실시간으로 연동됩니다.</p>'+
-           '<div class="row"><button class="pri" id="mCreate">방 만들기</button></div>'+
-           '<input id="mJoin" placeholder="이미 받은 방 ID가 있다면 붙여넣기" style="margin-top:10px">'+
-           '<div class="row"><button id="mJoinBtn">방 참여</button></div>')+
+   '<p>현재 상태: <b>'+esc(cur)+'</b>'+(lastErr?'<br><span style="color:var(--warn)">최근 오류: '+esc(lastErr)+'</span>':'')+'</p>'+
+   (be ? '<input id="mUrl" readonly value="'+esc(link)+'">'+
+         '<div class="row"><button class="pri" id="mCopy">주소 복사</button><button id="mTest">연결 테스트</button></div>'+
+         '<div class="row"><button id="mLeave">연결 해제</button></div>'
+       : '')+
+   '<p style="margin-top:14px">Firebase 데이터베이스 주소를 붙여넣으면 실시간으로 연동됩니다.</p>'+
+   '<input id="mFb" placeholder="https://프로젝트-default-rtdb.firebaseio.com" value="'+esc(be&&be.type==="firebase"?be.base:"")+'">'+
+   '<input id="mRoom" placeholder="방 이름 (예: shoot0916)" value="'+esc(be&&be.room?be.room:"shoot0916")+'">'+
+   '<div class="row"><button class="pri" id="mFbGo">연결</button></div>'+
    '<div class="row" style="margin-top:12px"><button id="mName2">이름 변경</button><button id="mReset">전체 초기화</button></div>'+
-   '<div class="hint">· 인터넷이 끊기면 이 기기에만 저장되고, 연결되면 자동으로 합쳐집니다.<br>· 같은 컷을 두 사람이 만지면 나중에 누른 쪽이 반영됩니다.</div>');
-  if(room){
+   '<div class="hint">· 연결하면 같은 주소·같은 방 이름을 연 사람끼리 체크가 즉시 공유됩니다.<br>'+
+   '· 인터넷이 끊겨도 이 기기에 저장되고, 다시 연결되면 자동으로 합쳐집니다.<br>'+
+   '· 같은 컷을 두 사람이 만지면 나중에 누른 쪽이 반영됩니다.</div>');
+  if(be){
     $('mCopy').onclick=function(){ var i=$('mUrl'); i.select();
-      if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(i.value).then(function(){alert('주소를 복사했습니다.');},function(){}); }
+      if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(i.value).then(function(){alert('주소를 복사했습니다.');},function(){});
       else { try{document.execCommand('copy'); alert('주소를 복사했습니다.');}catch(e){} } };
-    $('mLeave').onclick=function(){ if(confirm('공유 방에서 나갑니다. 체크는 이 기기에 남습니다.')){ room=null; location.hash=''; saveLocal(); pill('개인 모드',''); closeModal(); render(true); } };
-  } else {
-    $('mCreate').onclick=function(){ createRoom().then(function(){ closeModal(); roomModal(); })
-      .catch(function(){ alert('방 생성에 실패했습니다. 인터넷 연결을 확인하거나 잠시 후 다시 시도하세요.'); }); };
-    $('mJoinBtn').onclick=function(){ var v=($('mJoin').value||'').trim(); if(!v) return;
-      v = v.indexOf('room=')>=0 ? v.split('room=')[1] : v.split('/').pop();
-      room=v; location.hash='room='+room; saveLocal(); closeModal(); pull().then(function(){ render(true); }); };
+    $('mTest').onclick=function(){ pull().then(function(){
+      alert(lastErr ? ('연결 실패\n'+lastErr) : '연결 정상입니다. 동기화되고 있습니다.'); }); };
+    $('mLeave').onclick=function(){ be=null; stopSync(); location.hash=''; saveLocal(); closeModal(); render(true); pill('개인 모드 · 공유하려면 탭',''); };
   }
+  $('mFbGo').onclick=function(){
+    var base=($('mFb').value||'').trim(), rm=($('mRoom').value||'').trim()||'shoot0916';
+    if(!base){ alert('Firebase 주소를 입력하세요.'); return; }
+    if(base.indexOf('http')!==0) base='https://'+base;
+    base = base.replace(/\/+$/,'');
+    be={type:'firebase', base:base, room:rm.replace(/[^A-Za-z0-9_-]/g,'')};
+    location.hash = beHash(); saveLocal(); closeModal(); startSync(); render(true);
+    setTimeout(function(){ if(lastErr) alert('연결 실패\n'+lastErr+'\n\n주소와 데이터베이스 규칙(읽기/쓰기 허용)을 확인하세요.'); }, 2500);
+  };
   $('mName2').onclick=function(){ askName(roomModal); };
   $('mReset').onclick=function(){ if(confirm('모든 체크를 초기화합니다. 공유 중이면 모두에게 반영됩니다.')){
-    var now=Date.now(); Object.keys(state).forEach(function(kk){ state[kk]={v:0,t:now,by:me}; });
-    dirty=true; saveLocal(); push(); closeModal(); render(); } };
+    var now=Date.now(); Object.keys(state).forEach(function(kk){ state[kk]={v:0,t:now,by:me}; queuePush(kk); });
+    saveLocal(); closeModal(); render(); } };
+}
+function beHash(){
+  if(!be) return '';
+  if(be.type==='firebase') return 'fb='+encodeURIComponent(be.base)+'&room='+encodeURIComponent(be.room);
+  return 'blob='+encodeURIComponent(be.id);
 }
 /* ---------- shell ---------- */
 Array.prototype.forEach.call(document.querySelectorAll('.tab'), function(t){
@@ -408,7 +467,7 @@ Array.prototype.forEach.call(document.querySelectorAll('.chip'), function(c){
     c.classList.add('on'); filter=c.getAttribute('data-f'); render(); }; });
 $('btnNow').onclick=jumpNow;
 $('btnRoom').onclick=roomModal;
-$('syncPill').onclick=function(){ if(room) pull(); else roomModal(); };
+$('syncPill').onclick=function(){ if(be) pull(); else roomModal(); };
 $('btnCopy').onclick=function(){
   var lines=[];
   ['day1','day2'].forEach(function(d){
@@ -424,13 +483,17 @@ $('btnCopy').onclick=function(){
 };
 /* ---------- boot ---------- */
 loadLocal();
-var h = location.hash.replace(/^#/,'');
-if(h.indexOf('room=')>=0){ room = h.split('room=')[1].split('&')[0]; }
+(function(){
+  var h = location.hash.replace(/^#/,''); if(!h) return;
+  var q={}; h.split('&').forEach(function(p){ var i=p.indexOf('='); if(i>0) q[p.slice(0,i)]=decodeURIComponent(p.slice(i+1)); });
+  if(q.fb) be={type:'firebase', base:q.fb.replace(/\/+$/,''), room:q.room||'shoot0916'};
+  else if(q.blob) be={type:'jsonblob', id:q.blob};
+  else if(q.room && !q.fb) be={type:'jsonblob', id:q.room};
+})();
 render();
-if(room){ pill('연결 중…',''); pull(); setInterval(function(){ pull(); }, 5000); }
-else pill('개인 모드 · 공유하려면 탭','');
+startSync();
 setInterval(function(){ renderNow(); }, 30000);
-document.addEventListener('visibilitychange', function(){ if(!document.hidden && room) pull(); });
+document.addEventListener('visibilitychange', function(){ if(!document.hidden && be) pull(); });
 if(!me) setTimeout(function(){ askName(); }, 400);
 })();
 </script>
